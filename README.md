@@ -3,7 +3,7 @@ A collection of tweaks which by themselves dont deserve their own mod
 
 # Currently implemented tweaks
 
-*Everything is off by default, you need to manually enable whatever you want in the Mod Settings page of Tweaks55
+*Everything is off by default, you need to manually enable whatever you want in the Mod Settings page of Tweaks55*
 
 ### Add Static lights toggle back
 Reverts the two seperate select boxes back to one simple toggle
