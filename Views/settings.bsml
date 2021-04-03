@@ -1,0 +1,84 @@
+﻿<settings-container>
+	<horizontal horizontal-fit="PreferredSize">
+		<text text='UI / Quality of Life' align='Center'></text>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="staticLightsToggle" text="Add Static lights toggle back"
+						hover-hint="Reverts the two seperate select boxes back to one simple toggle"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="wallsInZenMode" text="Show walls in Zen mode"
+						hover-hint="Enables walls in Zen mode"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableHealthWarning" text="Disable Health warning"
+						hover-hint="Disables the health warning you get on every game start"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableIngameMapEditor" text="Disable Ingame Editor"
+						hover-hint="Prevents the ingame map editor from opening when clicking its button"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="keepGameSettingsOnCancel" text="Keep Game settings on Cancel"
+						hover-hint="Some of the ingame settings can be changed without actually applying them (Clicking OK), primarily Saber and Roomadjust settings. Enabling this allows you to simply click Cancel after changing them and have the settings stay instead of reset"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="muteMenuLogoBuzz" text="Disable Menu Logo Buzz (&lt;1.14)"
+						hover-hint="Disables the soundeffect played when the Logo in the menu flickers"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<text text='Gameplay / Particles' align='Center'></text>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableWallRumbleAndParticles" text="Disable Wall Clash"
+						hover-hint="Disables wall rumble and the accompanying particles when touching walls with your saber"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableSaberClash" text="Disable Saberclash"
+						hover-hint="Disables all effects / rumble from touching sabers together"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableCutParticles" text="Disable Cut Particles"
+						hover-hint="Disables the particles that spawn from cutting blocks"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableGlobalParticles" text="Disable World Particles / Dust"
+						hover-hint="Disables the world particles / dust floating around"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableDebris" text="Disable Debris"
+						hover-hint="Disables Debris"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableFakeWallBloom" text="Disable Fake wall bloom"
+						hover-hint="Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps). Disabling this might require a game restart to function correctly"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<text text='Custom cut rumble' align='Center'></text>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="enableCustomRumble" text="Enable custom cut Rumble"></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<slider-setting apply-on-change="true" value="cutRumbleStrength" text="Cut Rumble Strength"
+						hover-hint="Default is 1.0"
+						min="0" max="1" increment="0.05"></slider-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<slider-setting apply-on-change="true" value="cutRumbleDuration" text="Cut Rumble Duration"
+						hover-hint="Default is 0.14"
+						min="0" max="1" increment="0.01"></slider-setting>
+	</horizontal>
+</settings-container>
