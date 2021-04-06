@@ -20,6 +20,7 @@ namespace Tweaks55 {
 	[Plugin(RuntimeOptions.SingleStartInit)]
 	public class Plugin {
 		internal static Plugin Instance { get; private set; }
+		internal static IPALogger Log { get; private set; }
 
 		public static Harmony harmony;
 
@@ -29,8 +30,10 @@ namespace Tweaks55 {
 		/// [Init] methods that use a Constructor or called before regular methods like InitWithConfig.
 		/// Only use [Init] with one Constructor.
 		/// </summary>Console.WriteLine
-		public void Init(Config conf) {
+		public void Init(Config conf, IPALogger logger) {
 			Instance = this;
+			Log = logger;
+
 			Configuration.PluginConfig.Instance = conf.Generated<Configuration.PluginConfig>();
 
 			BSMLSettings.instance.AddSettingsMenu("Tweaks55", "Tweaks55.Views.settings.bsml", Configuration.PluginConfig.Instance);
@@ -44,15 +47,6 @@ namespace Tweaks55 {
 		private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1) {
 			if(arg1.name == "MenuViewControllers" || arg1.name == "GameCore")
 				GlobalParticles.SetEnabledState();
-
-#if OCULUS
-			//if(arg1.name == "GameCore" && OVRPlugin.initialized) {
-			//	Application.targetFrameRate = 180;
-			//	QualitySettings.vSyncCount = 0;
-			//	QualitySettings.maxQueuedFrames = 1;
-			//	OVRPlugin.vsyncCount = 0;
-			//}
-#endif
 		}
 	}
 }

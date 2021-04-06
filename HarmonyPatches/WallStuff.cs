@@ -28,7 +28,7 @@ namespace Tweaks55.HarmonyPatches {
 		[HarmonyPriority(int.MaxValue)]
 		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il) {
 			if(instructions.ElementAt(79).opcode != OpCodes.Ldarg_0) {
-				Console.WriteLine("disableFakeWallBloom: StretchableObstacle.SetSizeAndColor:79 was not what I expected, not patching it");
+				Plugin.Log.Warn("disableFakeWallBloom: StretchableObstacle.SetSizeAndColor:79 was not what I expected, not patching it");
 			} else {
 				ILUtil.ContinueOnCondition(79, ref instructions, il, AccessTools.Method(typeof(WallFakeBloom), nameof(__DisableFakeBloomProcessing)));
 			}
