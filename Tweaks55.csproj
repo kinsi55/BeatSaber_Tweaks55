@@ -163,7 +163,6 @@
 
     <ItemGroup>
         <None Include="Directory.Build.targets" Condition="Exists('Directory.Build.targets')" />
-        <None Include="HarmonyPatches\RemoveSplashscreen.cs" />
     </ItemGroup>
 
     <ItemGroup>
