@@ -2,3 +2,5 @@
 bin/*
 obj/*
 *.user
+HarmonyPatches/RemoveSplashscreen.cs
+HarmonyPatchHelper.cs

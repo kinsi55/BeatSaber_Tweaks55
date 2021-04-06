@@ -26,6 +26,9 @@ namespace Tweaks55.Configuration {
 		public virtual bool wallsInZenMode { get; set; } = false;
 
 
+		public virtual bool basegameFulltextSearch { get; set; } = false;
+
+
 		public virtual bool enableCustomRumble { get; set; } = false;
 		public virtual float cutRumbleStrength { get; set; } = 0.075f;
 		public virtual float cutRumbleDuration { get; set; } = 0.08f;

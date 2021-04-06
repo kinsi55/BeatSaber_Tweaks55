@@ -30,7 +30,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(instructions.ElementAt(79).opcode != OpCodes.Ldarg_0) {
 				Plugin.Log.Warn("disableFakeWallBloom: StretchableObstacle.SetSizeAndColor:79 was not what I expected, not patching it");
 			} else {
-				ILUtil.ContinueOnCondition(79, ref instructions, il, AccessTools.Method(typeof(WallFakeBloom), nameof(__DisableFakeBloomProcessing)));
+				ILUtil.DynamicPrefix(79, ref instructions, il, AccessTools.Method(typeof(WallFakeBloom), nameof(__DisableFakeBloomProcessing)));
 			}
 			return instructions;
 		}

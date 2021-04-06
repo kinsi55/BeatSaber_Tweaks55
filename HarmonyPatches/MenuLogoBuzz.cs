@@ -16,7 +16,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(instructions.ElementAt(52).opcode != OpCodes.Ldarg_0) {
 				Plugin.Log.Warn("muteMenuLogoBuzz: FlickeringNeonSign.SetOn:52 was not what I expected, not patching it");
 			} else {
-				ILUtil.ContinueOnCondition(52, ref instructions, il, AccessTools.Method(typeof(FlickeringNeonSignPatch), nameof(__DisableBuzz)));
+				ILUtil.DynamicPrefix(52, ref instructions, il, AccessTools.Method(typeof(FlickeringNeonSignPatch), nameof(__DisableBuzz)));
 			}
 			return instructions;
 		}

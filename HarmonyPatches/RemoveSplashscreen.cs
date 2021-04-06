@@ -20,7 +20,7 @@ namespace Tweaks55.HarmonyPatches {
 
 		[HarmonyTargetMethod]
 		public static IEnumerable<MethodBase> TargetMethods() {
-			yield return AccessTools.FirstInner(typeof(AppInit), t => t.Name.StartsWith("<StartCoroutine"))?.GetMethod("MoveNext", BindingFlags.NonPublic | BindingFlags.Instance);
+			yield return ILUtil.GetIterator<AppInit>("StartCoroutine");
 		}
 	}
 }
