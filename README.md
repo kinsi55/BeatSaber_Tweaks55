@@ -8,6 +8,9 @@ A collection of tweaks which by themselves dont deserve their own mod
 ### Add Static lights toggle back
 Reverts the two seperate select boxes back to one simple toggle
 
+### Make Basegame Song-Search Fulltext
+Changes the Basegame song search to be fulltext, so when searching for 'the top' it will not find all songs which contain 'the' and 'top' but instead only songs that contain 'the top'
+
 ### Show walls in Zen mode
 Enables walls in Zen mode
 
