@@ -33,11 +33,6 @@
 						></checkbox-setting>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
-		<checkbox-setting apply-on-change="true" value="muteMenuLogoBuzz" text="Disable Menu Logo Buzz (&lt;1.14)"
-						hover-hint="Disables the soundeffect played when the Logo in the menu flickers"
-						></checkbox-setting>
-	</horizontal>
-	<horizontal horizontal-fit="PreferredSize">
 		<text text='Gameplay / Particles' align='Center'></text>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
