@@ -23,6 +23,9 @@ Prevents the ingame map editor from opening when clicking its button
 ### Keep Game settings on Cancel
 Some of the ingame settings can be changed without actually applying them (Clicking OK), primarily Saber and Roomadjust settings. Enabling this allows you to simply click Cancel after changing them and have the settings stay instead of reset
 
+### Scroll speed multiplier
+Allows you to increase the maximum speed that you can scroll lists at with your joystick
+
 ### Disable Menu Logo Buzz (<1.14)
 Disables the soundeffect played when the Logo in the menu flickers
 
@@ -37,6 +40,9 @@ Disables the particles that spawn from cutting blocks
 
 ### Disable World Particles / Dust
 Disables the world particles / dust floating around
+
+### Disable Slice Score
+Disables the Score display you get per Cut (115 etc)
 
 ### Disable Debris
 Makes your game crash more often on purpose, especially if you are about to get a PB
