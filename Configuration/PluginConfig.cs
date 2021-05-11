@@ -13,6 +13,7 @@ namespace Tweaks55.Configuration {
 		public virtual bool disableCutParticles { get; set; } = false;
 		public virtual bool disableGlobalParticles { get; set; } = false;
 		public virtual bool disableDebris { get; set; } = false;
+		public virtual bool disableSliceScore { get; set; } = false;
 
 
 		public virtual bool disableIngameMapEditor { get; set; } = false;
@@ -27,6 +28,9 @@ namespace Tweaks55.Configuration {
 
 
 		public virtual bool basegameFulltextSearch { get; set; } = false;
+
+		public virtual float scrollSpeedMultiplier { get; set; } = 1f;
+
 
 
 		public virtual bool enableCustomRumble { get; set; } = false;

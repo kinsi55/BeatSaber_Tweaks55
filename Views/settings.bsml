@@ -33,6 +33,11 @@
 						></checkbox-setting>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
+		<slider-setting apply-on-change="true" value="scrollSpeedMultiplier" text="Scroll speed multiplier" min='1' max='5' increment='0.1'
+						hover-hint="Allows you to increase the maximum speed that you can scroll lists at with your joystick"
+						></slider-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
 		<text text='Gameplay / Particles' align='Center'></text>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
@@ -53,6 +58,11 @@
 	<horizontal horizontal-fit="PreferredSize">
 		<checkbox-setting apply-on-change="true" value="disableGlobalParticles" text="Disable World Particles / Dust"
 						hover-hint="Disables the world particles / dust floating around"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableSliceScore" text="Disable Slice Score"
+						hover-hint="Disables the Score display you get per Cut (115 etc)"
 						></checkbox-setting>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
