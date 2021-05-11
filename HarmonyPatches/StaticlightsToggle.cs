@@ -56,7 +56,10 @@ namespace Tweaks55.HarmonyPatches {
 			GameObject disableNext(EnvironmentEffectsFilterPresetDropdown e, bool active) {
 				var s = e.transform.parent.GetSiblingIndex();
 
-				e.transform.parent.parent.GetChild(s + 1).gameObject.SetActive(active);
+				var l = e.transform.parent.parent.GetChild(s + 1).gameObject;
+
+				if(l.name == "-")
+					l.SetActive(active);
 
 				return e.transform.parent.gameObject;
 			}
