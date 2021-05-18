@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(PlayerSettingsPanelController), nameof(PlayerSettingsPanelController.SetLayout))]
@@ -42,6 +43,12 @@ namespace Tweaks55.HarmonyPatches {
 			toggle2.SelectCellWithLightReductionAmount(theEffect);
 
 			instance.SetIsDirty();
+		}
+
+		static IEnumerator InitEffectState(bool setStatic) {
+			yield return new WaitForSeconds(.01f);
+
+			ToggleEffectState(setStatic);
 		}
 
 		public static void Setup(bool enable) {
@@ -90,8 +97,11 @@ namespace Tweaks55.HarmonyPatches {
 			replaceToggle.gameObject.SetActive(enable);
 
 			if(enable) {
-				replaceToggle.isOn = true;
-				ToggleEffectState(true);
+				var targetState = instance.playerSpecificSettings.environmentEffectsFilterDefaultPreset == EnvironmentEffectsFilterPreset.NoEffects &&
+				instance.playerSpecificSettings.environmentEffectsFilterExpertPlusPreset == EnvironmentEffectsFilterPreset.NoEffects;
+
+				replaceToggle.isOn = targetState;
+				SharedCoroutineStarter.instance.StartCoroutine(InitEffectState(targetState));
 			}
 		}
 	}
