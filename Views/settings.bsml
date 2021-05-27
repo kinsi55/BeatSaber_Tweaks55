@@ -41,6 +41,11 @@
 		<text text='Gameplay / Particles' align='Center'></text>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableFakeMirror" text="Disable Fake note mirror"
+						hover-hint="Disables the fake note / wall mirror you get when setting Mirror quality to 'Off' in the game setting"
+						></checkbox-setting>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
 		<checkbox-setting apply-on-change="true" value="disableWallRumbleAndParticles" text="Disable Wall Clash"
 						hover-hint="Disables wall rumble and the accompanying particles when touching walls with your saber"
 						></checkbox-setting>
