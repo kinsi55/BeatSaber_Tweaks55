@@ -17,7 +17,6 @@ namespace Tweaks55.Configuration {
 
 
 		public virtual bool disableIngameMapEditor { get; set; } = false;
-		public virtual bool muteMenuLogoBuzz { get; set; } = false;
 		public virtual bool keepGameSettingsOnCancel { get; set; } = false;
 		public virtual bool disableHealthWarning { get; set; } = false;
 
