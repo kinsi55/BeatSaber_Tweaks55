@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(NoteDebrisSpawner), nameof(NoteDebrisSpawner.SpawnDebris))]
-	class Debris {
+	static class Debris {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableDebris;
 	}

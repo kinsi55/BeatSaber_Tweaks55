@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(SaberClashEffect), nameof(SaberClashEffect.LateUpdate))]
-	class SaberClash {
+	static class SaberClash {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableSaberClash;
 	}

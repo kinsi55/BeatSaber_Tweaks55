@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(GameplayCoreInstaller), "InstallBindings")]
-	class ZenModeActive {
+	static class ZenModeActive {
 		public static bool isZenMode = false;
 
 		[HarmonyPriority(int.MinValue)]
@@ -15,7 +15,7 @@ namespace Tweaks55.HarmonyPatches {
 	}
 
 	[HarmonyPatch(typeof(BeatmapDataZenModeTransform), nameof(BeatmapDataZenModeTransform.CreateTransformedData))]
-	class ZenMode {
+	static class ZenMode {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(IReadonlyBeatmapData beatmapData, ref IReadonlyBeatmapData __result) {
 			if(!Configuration.PluginConfig.Instance.wallsInZenMode)
@@ -39,7 +39,7 @@ namespace Tweaks55.HarmonyPatches {
 
 
 	[HarmonyPatch(typeof(PlayerHeadAndObstacleInteraction), nameof(PlayerHeadAndObstacleInteraction.intersectingObstacles), MethodType.Getter)]
-	class ZenMode2 {
+	static class ZenMode2 {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(List<ObstacleController> ____intersectingObstacles, ref List<ObstacleController> __result) {
 			if(!Configuration.PluginConfig.Instance.wallsInZenMode)

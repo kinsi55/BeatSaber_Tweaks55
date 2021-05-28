@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
-	class WallClash {
+	static class WallClash {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableWallRumbleAndParticles;
 
@@ -24,7 +24,7 @@ namespace Tweaks55.HarmonyPatches {
 	}
 
 	[HarmonyPatch(typeof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor))]
-	class WallFakeBloom {
+	static class WallFakeBloom {
 		[HarmonyPriority(int.MaxValue)]
 		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il) {
 			if(instructions.ElementAt(79).opcode != OpCodes.Ldarg_0) {

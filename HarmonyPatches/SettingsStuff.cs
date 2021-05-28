@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(SettingsFlowCoordinator), nameof(SettingsFlowCoordinator.CancelSettings))]
-	class DisableSettingsResetONCancel {
+	static class DisableSettingsResetONCancel {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.keepGameSettingsOnCancel;
 	}

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
-	class FakeBeatmapMirror {
+	static class FakeBeatmapMirror {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableFakeMirror;
 

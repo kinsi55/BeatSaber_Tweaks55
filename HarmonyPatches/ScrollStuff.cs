@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(ScrollView), nameof(ScrollView.HandleJoystickWasNotCenteredThisFrame))]
-	class OverrideMaxScrollSpeed {
+	static class OverrideMaxScrollSpeed {
 		[HarmonyPriority(int.MaxValue)]
 		static void Prefix(ref Vector2 deltaPos) {
 			deltaPos *= Configuration.PluginConfig.Instance.scrollSpeedMultiplier;

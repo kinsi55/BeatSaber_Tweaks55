@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(DefaultScenesTransitionsFromInit), nameof(DefaultScenesTransitionsFromInit.TransitionToNextScene))]
-	class PatchHealthWarning {
+	static class PatchHealthWarning {
 		[HarmonyPriority(int.MinValue)]
 		static void Prefix(ref bool goStraightToMenu) {
 			if(Configuration.PluginConfig.Instance.disableHealthWarning)

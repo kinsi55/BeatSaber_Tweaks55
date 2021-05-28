@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Tweaks55.HarmonyPatches {
 
 	[HarmonyPatch(typeof(MainMenuViewController), nameof(MainMenuViewController.HandleMenuButton))]
-	class DisableBeatmapEditor {
+	static class DisableBeatmapEditor {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(MainMenuViewController.MenuButton menuButton) => 
 			menuButton != MainMenuViewController.MenuButton.BeatmapEditor || !Configuration.PluginConfig.Instance.disableIngameMapEditor;

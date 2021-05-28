@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(NoteCutHapticEffect), nameof(NoteCutHapticEffect.HitNote))]
-	class RumbleStuff {
+	static class RumbleStuff {
 		static HapticPresetSO _ourPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
 
 		[HarmonyPriority(int.MinValue)]

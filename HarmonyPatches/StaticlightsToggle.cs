@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(PlayerSettingsPanelController), nameof(PlayerSettingsPanelController.SetLayout))]
-	class StaticlightsToggle {
+	static class StaticlightsToggle {
 		static PlayerSettingsPanelController instance;
 		static EnvironmentEffectsFilterPresetDropdown toggle1;
 		static EnvironmentEffectsFilterPresetDropdown toggle2;

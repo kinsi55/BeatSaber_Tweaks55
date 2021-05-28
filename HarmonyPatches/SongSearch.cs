@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Tweaks55.HarmonyPatches {
 
 	[HarmonyPatch]
-	class BasegameSearchFulltext {
+	static class BasegameSearchFulltext {
 		static bool isActive = true;
 
 		[HarmonyPriority(int.MaxValue)]

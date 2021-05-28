@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	class GlobalParticles {
+	static class GlobalParticles {
 		public static void SetEnabledState() {
 			if(Configuration.PluginConfig.Instance == null) {
 				SetEnabledState(true);
