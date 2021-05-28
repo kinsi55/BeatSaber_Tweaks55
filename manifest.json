@@ -3,9 +3,9 @@
 	"id": "Tweaks55",
 	"name": "Tweaks55",
 	"author": "Kinsi55",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"description": "",
-	"gameVersion": "1.16.0",
+	"gameVersion": "1.16.1",
 	"dependsOn": {
 		"BSIPA": "^4.0.5"
 	},
