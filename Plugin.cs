@@ -45,7 +45,7 @@ namespace Tweaks55 {
 		}
 
 		private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1) {
-			if(arg1.name == "MenuViewControllers" || arg1.name == "GameCore")
+			if(arg1.name == "MainMenu" || arg1.name == "GameCore")
 				GlobalParticles.SetEnabledState();
 		}
 	}
