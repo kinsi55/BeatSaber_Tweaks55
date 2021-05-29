@@ -27,10 +27,10 @@ namespace Tweaks55.HarmonyPatches {
 	static class WallFakeBloom {
 		[HarmonyPriority(int.MaxValue)]
 		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il) {
-			if(instructions.ElementAt(79).opcode != OpCodes.Ldarg_0) {
-				Plugin.Log.Warn("disableFakeWallBloom: StretchableObstacle.SetSizeAndColor:79 was not what I expected, not patching it");
+			if(instructions.ElementAt(84).opcode != OpCodes.Ldarg_0) {
+				Plugin.Log.Warn("disableFakeWallBloom: StretchableObstacle.SetSizeAndColor:84 was not what I expected, not patching it");
 			} else {
-				ILUtil.DynamicPrefix(79, ref instructions, il, AccessTools.Method(typeof(WallFakeBloom), nameof(__DisableFakeBloomProcessing)));
+				ILUtil.DynamicPrefix(84, ref instructions, il, AccessTools.Method(typeof(WallFakeBloom), nameof(__DisableFakeBloomProcessing)));
 			}
 			return instructions;
 		}
