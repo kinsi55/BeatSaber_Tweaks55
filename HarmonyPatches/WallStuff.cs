@@ -39,7 +39,7 @@ namespace Tweaks55.HarmonyPatches {
 
 		[HarmonyPriority(int.MinValue)]
 		static void Postfix(MonoBehaviour ____obstacleFakeGlow) {
-			if(____obstacleFakeGlow.gameObject.activeInHierarchy && Configuration.PluginConfig.Instance.disableFakeWallBloom)
+			if(____obstacleFakeGlow?.gameObject.activeInHierarchy == true && Configuration.PluginConfig.Instance.disableFakeWallBloom)
 				____obstacleFakeGlow.gameObject.SetActive(false);
 		}
 	}
