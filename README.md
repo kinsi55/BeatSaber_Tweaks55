@@ -1,5 +1,5 @@
 # BeatSaber_Tweaks55
-A collection of tweaks which by themselves dont deserve their own mod
+A collection of various tweaks which by themselves are to simple for their own designated mods
 
 # Currently implemented tweaks
 
