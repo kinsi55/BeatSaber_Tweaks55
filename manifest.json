@@ -3,11 +3,12 @@
 	"id": "Tweaks55",
 	"name": "Tweaks55",
 	"author": "Kinsi55",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"description": "",
 	"gameVersion": "1.16.1",
 	"dependsOn": {
-		"BSIPA": "^4.0.5"
+		"BSIPA": "^4.0.5",
+		"BeatSaberMarkupLanguage": "^1.5.3"
 	},
 	"loadAfter": [
 		"SiraUtil"
