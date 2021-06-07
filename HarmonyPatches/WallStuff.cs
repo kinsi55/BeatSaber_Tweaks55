@@ -12,7 +12,6 @@ namespace Tweaks55.HarmonyPatches {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableWallRumbleAndParticles;
 
-		[HarmonyTargetMethods]
 		static IEnumerable<MethodBase> TargetMethods() {
 			yield return AccessTools.Method(typeof(ObstacleSaberSparkleEffectManager), "Update");
 

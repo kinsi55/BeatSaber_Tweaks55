@@ -49,9 +49,6 @@ namespace Tweaks55.HarmonyPatches {
 		}
 		static bool __EnableFulltextSearch() => Configuration.PluginConfig.Instance.basegameFulltextSearch;
 
-		[HarmonyTargetMethod]
-		public static IEnumerable<MethodBase> TargetMethods() {
-			yield return ILUtil.GetIterator<BeatmapLevelFilterModel>("FilerBeatmapLevelPackCollectionAsync");
-		}
+		static MethodBase TargetMethod() => ILUtil.GetIterator<BeatmapLevelFilterModel>("FilerBeatmapLevelPackCollectionAsync");
 	}
 }

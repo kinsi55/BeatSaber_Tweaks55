@@ -12,7 +12,6 @@ namespace Tweaks55.HarmonyPatches {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableFakeMirror;
 
-		[HarmonyTargetMethods]
 		static IEnumerable<MethodBase> TargetMethods() {
 			foreach(var m in AccessTools.GetDeclaredMethods(typeof(MirroredBeatmapObjectManager))) {
 				if(m.Name.EndsWith("WasSpawned") || m.Name.EndsWith("WasDespawned"))
