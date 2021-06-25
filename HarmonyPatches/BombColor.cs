@@ -9,8 +9,8 @@ using UnityEngine;
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch(typeof(BombNoteController), nameof(BombNoteController.Init))]
 	static class BombColor {
-		[HarmonyPriority(int.MinValue)]
-		static void Postfix(BombNoteController __instance) {
+		[HarmonyPriority(int.MaxValue)]
+		static void Prefix(BombNoteController __instance) {
 			if(Configuration.PluginConfig.Instance.bombColor != Color.black)
 				__instance.transform.GetChild(0)?.GetComponent<Renderer>()?.material?.SetColor("_SimpleColor", Configuration.PluginConfig.Instance.bombColor);
 		}
