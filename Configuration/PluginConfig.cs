@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using IPA.Config.Stores;
 using Tweaks55.HarmonyPatches;
+using UnityEngine;
 
 [assembly: InternalsVisibleTo(GeneratedStore.AssemblyVisibilityTarget)]
 namespace Tweaks55.Configuration {
@@ -24,6 +25,9 @@ namespace Tweaks55.Configuration {
 		public virtual bool disableFakeWallBloom { get; set; } = false;
 		public virtual bool staticLightsToggle { get; set; } = false;
 		public virtual bool wallsInZenMode { get; set; } = false;
+		public virtual bool disableBeatLines { get; set; } = false;
+
+		internal Color bombColor;
 
 
 		public virtual bool basegameFulltextSearch { get; set; } = false;
