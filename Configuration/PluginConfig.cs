@@ -14,7 +14,6 @@ namespace Tweaks55.Configuration {
 		public virtual bool disableGlobalParticles { get; set; } = false;
 		public virtual bool disableDebris { get; set; } = false;
 		public virtual bool disableSliceScore { get; set; } = false;
-		public virtual bool disableFakeMirror { get; set; } = false;
 
 
 		public virtual bool disableIngameMapEditor { get; set; } = false;
