@@ -5,7 +5,7 @@ Currently compatible game versions: **1.16 and up**, for older versions see olde
 
 ### Install
 
-Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases), download the dll from the latest release and place it in your plugins folder.
+Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/latest), download the dll from the latest release and place it in your plugins folder.
 
 # Currently implemented tweaks
 
