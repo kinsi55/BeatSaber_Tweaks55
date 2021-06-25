@@ -16,7 +16,6 @@ namespace Tweaks55.HarmonyPatches {
 		[HarmonyPriority(int.MaxValue)]
 		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il) {
 			if(!ILUtil.CheckIL(instructions, new Dictionary<int, OpCode>() {
-				{90, OpCodes.Brtrue_S},
 				{93, OpCodes.Ldarg_0},
 				{96, OpCodes.Callvirt},
 				{104, OpCodes.Stfld}
