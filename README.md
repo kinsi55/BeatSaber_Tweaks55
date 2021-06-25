@@ -32,8 +32,11 @@ Some of the ingame settings can be changed without actually applying them (Click
 ### Scroll speed multiplier
 Allows you to increase the maximum speed that you can scroll lists at with your joystick
 
-### Disable Fake note mirror
-Disables the fake note / wall mirror you get when setting Mirror quality to 'Off' in the game setting
+### Bomb color
+Changes the color of bombs
+
+### Disable Beat lines
+Disables the extremely bright lines which show up on the floor in columns where notes spawn
 
 ### Disable Wall Clash
 Disables wall rumble and the accompanying particles when touching walls with your saber
