@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch)]
+	[HarmonyPatch]
 	static class BeatLines {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableBeatLines;
