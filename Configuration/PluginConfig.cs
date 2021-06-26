@@ -27,7 +27,7 @@ namespace Tweaks55.Configuration {
 		public virtual bool wallsInZenMode { get; set; } = false;
 		public virtual bool disableBeatLines { get; set; } = false;
 
-		internal Color bombColor;
+		internal Color bombColor = Color.black;
 
 
 		public virtual bool basegameFulltextSearch { get; set; } = false;
