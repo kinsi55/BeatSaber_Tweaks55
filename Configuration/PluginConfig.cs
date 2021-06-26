@@ -54,6 +54,9 @@ namespace Tweaks55.Configuration {
 			// Do stuff when the config is changed.
 			StaticlightsToggle.Setup(staticLightsToggle);
 			GlobalParticles.SetEnabledState(!disableGlobalParticles);
+
+			if(bombColor.a != 1f)
+				bombColor.a = 1;
 		}
 
 		/// <summary>
