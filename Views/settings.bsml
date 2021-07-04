@@ -76,6 +76,11 @@
 						/>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
+		<checkbox-setting apply-on-change="true" value="disableComboBreakEffect" text="Disable Combo break effect"
+						hover-hint="Disables the two FC lines on the combo counter 'exploding' when you lose your FC"
+						/>
+	</horizontal>
+	<horizontal horizontal-fit="PreferredSize">
 		<checkbox-setting apply-on-change="true" value="disableFakeWallBloom" text="Disable Fake wall bloom"
 						hover-hint="Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps). Disabling this might require a game restart to function correctly"
 						/>
@@ -94,6 +99,6 @@
 	<horizontal horizontal-fit="PreferredSize">
 		<slider-setting apply-on-change="true" value="cutRumbleDuration" text="Cut Rumble Duration"
 						hover-hint="Default is 0.14"
-						min="0" max="1" increment="0.01"/>
+						min="0" max="0.5" increment="0.01"/>
 	</horizontal>
 </settings-container>
