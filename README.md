@@ -17,9 +17,6 @@ Reverts the two seperate select boxes back to one simple toggle
 ### Make Basegame Song-Search Fulltext
 Changes the Basegame song search to be fulltext, so when searching for 'the top' it will not find all songs which contain 'the' or 'top' but instead only songs that contain 'the top'
 
-### Show walls in Zen mode
-Enables walls in Zen mode
-
 ### Disable Health warning
 Disables the health warning you get on every game start
 
@@ -49,6 +46,9 @@ Disables the particles that spawn from cutting blocks
 
 ### Disable World Particles / Dust
 Disables the world particles / dust floating around
+
+### Disable Combo Break animation
+Disables the two FC lines on the combo counter 'exploding' when you lose your FC
 
 ### Disable Slice Score
 Disables the Score display you get per Cut (115 etc)
