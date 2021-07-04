@@ -55,7 +55,8 @@ namespace Tweaks55.Configuration {
 			StaticlightsToggle.Setup(staticLightsToggle);
 			GlobalParticles.SetEnabledState(!disableGlobalParticles);
 
-			if(bombColor.a != 1f)
+			// Initially the default bomb color was 0;0;0;0, ths will correct that fault if it made its way into the config
+			if(bombColor.a == 0f)
 				bombColor.a = 1;
 		}
 
