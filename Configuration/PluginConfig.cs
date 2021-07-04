@@ -24,7 +24,6 @@ namespace Tweaks55.Configuration {
 
 		public virtual bool disableFakeWallBloom { get; set; } = false;
 		public virtual bool staticLightsToggle { get; set; } = false;
-		public virtual bool wallsInZenMode { get; set; } = false;
 		public virtual bool disableBeatLines { get; set; } = false;
 
 		internal Color bombColor = Color.black;

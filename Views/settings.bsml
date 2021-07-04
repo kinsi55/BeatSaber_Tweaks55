@@ -13,11 +13,6 @@
 						/>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
-		<checkbox-setting apply-on-change="true" value="wallsInZenMode" text="Show walls in Zen mode"
-						hover-hint="Enables walls in Zen mode"
-						/>
-	</horizontal>
-	<horizontal horizontal-fit="PreferredSize">
 		<checkbox-setting apply-on-change="true" value="disableHealthWarning" text="Disable Health warning"
 						hover-hint="Disables the health warning you get on every game start"
 						/>
