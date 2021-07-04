@@ -14,5 +14,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(Configuration.PluginConfig.Instance.bombColor != Color.black)
 				__instance.transform.GetChild(0)?.GetComponent<Renderer>()?.material?.SetColor("_SimpleColor", Configuration.PluginConfig.Instance.bombColor);
 		}
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("BombColor", ex);
 	}
 }

@@ -20,6 +20,8 @@ namespace Tweaks55.HarmonyPatches {
 			if(x != null)
 				yield return x;
 		}
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("WallClash", ex);
 	}
 
 	[HarmonyPatch(typeof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor))]
@@ -41,5 +43,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(____obstacleFakeGlow?.gameObject.activeInHierarchy == true && Configuration.PluginConfig.Instance.disableFakeWallBloom)
 				____obstacleFakeGlow.gameObject.SetActive(false);
 		}
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("WallFakeBloom", ex);
 	}
 }

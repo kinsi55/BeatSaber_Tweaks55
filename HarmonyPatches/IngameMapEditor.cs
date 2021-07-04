@@ -13,5 +13,7 @@ namespace Tweaks55.HarmonyPatches {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(MainMenuViewController.MenuButton menuButton) => 
 			menuButton != MainMenuViewController.MenuButton.BeatmapEditor || !Configuration.PluginConfig.Instance.disableIngameMapEditor;
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("DisableBeatmapEditor", ex);
 	}
 }

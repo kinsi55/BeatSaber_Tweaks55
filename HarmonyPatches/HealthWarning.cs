@@ -13,5 +13,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(Configuration.PluginConfig.Instance.disableHealthWarning)
 				goStraightToMenu = true;
 		}
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("PatchHealthWarning", ex);
 	}
 }

@@ -10,5 +10,7 @@ namespace Tweaks55.HarmonyPatches {
 	static class SaberClash {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableSaberClash;
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("SaberClash", ex);
 	}
 }

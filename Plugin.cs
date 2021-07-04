@@ -48,5 +48,13 @@ namespace Tweaks55 {
 			if(arg1.name == "MainMenu" || arg1.name == "GameCore")
 				GlobalParticles.SetEnabledState();
 		}
+
+		public static Exception PatchFailed(string name, Exception ex) {
+			if(ex != null) {
+				Plugin.Log.Warn($"{name} Tweak failed to setup! Ignoring");
+				Plugin.Log.Debug(ex);
+			}
+			return null;
+		}
 	}
 }

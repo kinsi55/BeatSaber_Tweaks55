@@ -12,5 +12,7 @@ namespace Tweaks55.HarmonyPatches {
 	static class CutParticles {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Configuration.PluginConfig.Instance.disableCutParticles;
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("CutParticles", ex);
 	}
 }

@@ -14,5 +14,7 @@ namespace Tweaks55.HarmonyPatches {
 		static void Prefix(ref Vector2 deltaPos) {
 			deltaPos *= Configuration.PluginConfig.Instance.scrollSpeedMultiplier;
 		}
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("OverrideMaxScrollSpeed", ex);
 	}
 }

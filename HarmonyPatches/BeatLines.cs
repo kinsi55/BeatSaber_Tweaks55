@@ -17,5 +17,7 @@ namespace Tweaks55.HarmonyPatches {
 			yield return AccessTools.Method(typeof(BeatLineManager), nameof(BeatLineManager.HandleNoteWasSpawned));
 			yield return AccessTools.Method(typeof(BeatLineManager), "Update");
 		}
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("BeatLines", ex);
 	}
 }
