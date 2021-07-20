@@ -24,6 +24,14 @@ namespace Tweaks55.HarmonyPatches {
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("WallClash", ex);
 	}
 
+	[HarmonyPatch(typeof(BeatmapDataObstaclesMergingTransform), "CanBeMerged")]
+	static class WallMerge {
+		[HarmonyPriority(int.MaxValue)]
+		static bool Prefix(ref bool __result) => __result = !Configuration.PluginConfig.Instance.disableWallMerge;
+
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("WallMerge", ex);
+	}
+
 	[HarmonyPatch(typeof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor))]
 	static class WallFakeBloom {
 		[HarmonyPriority(int.MaxValue)]

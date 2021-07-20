@@ -22,10 +22,12 @@
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DebugType>full</DebugType>
+      <OutputPath>bin\Debug\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <DebugType>none</DebugType>
+      <DebugType>none</DebugType>
+      <OutputPath>bin\Release\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition="$(DefineConstants.Contains('CIBuild')) OR '$(NCrunch)' == '1'">
@@ -35,10 +37,6 @@
     <PropertyGroup Condition="'$(NCrunch)' == '1'">
         <DisableCopyToPlugins>True</DisableCopyToPlugins>
         <DisableZipRelease>True</DisableZipRelease>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      <DefineConstants>DEBUG;TRACE</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
@@ -180,4 +178,4 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
-</Project> 
+</Project>

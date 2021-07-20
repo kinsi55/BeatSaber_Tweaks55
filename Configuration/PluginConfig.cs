@@ -22,6 +22,8 @@ namespace Tweaks55.Configuration {
 		public virtual bool disableHealthWarning { get; set; } = false;
 
 
+		public virtual bool disableWallMerge { get; set; } = false;
+
 		public virtual bool disableFakeWallBloom { get; set; } = false;
 		public virtual bool staticLightsToggle { get; set; } = false;
 		public virtual bool disableBeatLines { get; set; } = false;
