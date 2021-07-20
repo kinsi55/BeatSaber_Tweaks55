@@ -17,6 +17,7 @@
         <RepositoryType></RepositoryType>
         <RepositoryUrl></RepositoryUrl>
         <Description></Description>
+        <Platforms>x64</Platforms>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -36,7 +37,7 @@
         <DisableZipRelease>True</DisableZipRelease>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       <DefineConstants>DEBUG;TRACE</DefineConstants>
     </PropertyGroup>
 
