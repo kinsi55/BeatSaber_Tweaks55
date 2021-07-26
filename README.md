@@ -24,7 +24,7 @@ Disables the health warning you get on every game start
 Prevents the ingame map editor from opening when clicking its button
 
 ### Keep Game settings on Cancel
-Some of the ingame settings can be changed without actually applying them (Clicking OK), primarily Saber and Roomadjust settings. Enabling this allows you to simply click Cancel after changing them and have the settings stay instead of reset
+Some of the ingame settings can be changed without actually applying them (Clicking OK), primarily Saber and Roomadjust settings. Enabling this allows you to simply click Cancel after changing them and have the settings stay instead of reset so you dont have to wait for the game to reload stuff
 
 ### Scroll speed multiplier
 Allows you to increase the maximum speed that you can scroll lists at with your joystick
