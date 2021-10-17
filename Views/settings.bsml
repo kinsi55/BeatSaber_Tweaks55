@@ -41,11 +41,6 @@
 						/>
 	</horizontal>
 	<horizontal horizontal-fit="PreferredSize">
-		<checkbox-setting apply-on-change="true" value="disableWallMerge" text="Disable Wall Merge"
-						hover-hint="Disables the merging of walls that happens when you have Screen Distortion Effects off and multiple consecutive walls are equal"
-						/>
-	</horizontal>
-	<horizontal horizontal-fit="PreferredSize">
 		<checkbox-setting apply-on-change="true" value="disableBeatLines" text="Disable Beat lines"
 						hover-hint="Disables the extremely bright lines which show up on the floor in columns where notes spawn"
 						/>
