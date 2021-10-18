@@ -23,9 +23,6 @@ namespace Tweaks55.HarmonyPatches {
 			if(_ourPreset._duration == 0f || _ourPreset._strength == 0f)
 				return false;
 
-			if(____rumblePreset == _ourPreset)
-				return true;
-
 			____rumblePreset = _ourPreset;
 
 			return true;
