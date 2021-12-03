@@ -44,6 +44,7 @@
 
   <ItemGroup>
     <Compile Remove="HarmonyPatches\RemoveSplashscreen.cs" />
+    <Compile Remove="HarmonyPatchHelper.cs" />
     <Compile Remove="Utils\BloomShite.cs" />
   </ItemGroup>
 
@@ -139,7 +140,11 @@
 
   <ItemGroup>
     <EmbeddedResource Include="manifest.json" />
-    <EmbeddedResource Include="Views\settings.bsml" />
+    <EmbeddedResource Include="UI\settings.bsml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="HarmonyPatchHelper.cs" />
   </ItemGroup>
 
   <ItemGroup>

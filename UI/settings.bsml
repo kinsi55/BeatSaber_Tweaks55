@@ -1,0 +1,126 @@
+﻿<vertical child-control-height='false' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+
+
+	<macro.as-host host='config'>
+		<tab-selector tab-tag='tabs'/>
+		
+		<!--<horizontal preferred-width='110' child-expand-width='true' horizontal-fit='PreferredSize' pad='3'>
+			<text word-wrapping='true' font-size='3.2' face-color='#DDD' font-align='Center'
+				text='To make settings easier to find, some settings are listed in multiple tabs if they control multiple aspects at the same time (Like wall Rumble and Particles) or if they fit into multiple categories'
+		/>
+		</horizontal>-->
+		
+		<horizontal preferred-width='100' preferred-height='60'>
+			<tab tab-name='Gameplay' tags='tabs'>
+				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+					<color-setting apply-on-change="true" value="bombColor" text="Bomb color"
+						hover-hint="Changes the color of bombs..."
+					/>
+					<checkbox-setting apply-on-change="true" value="disableDebris" text="Disable Debris"
+						hover-hint="Disables Debris"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableSliceScore" text="Disable Slice Score"
+						hover-hint="Disables the Score display you get per cut (115 etc)"
+					/>
+				</modifier-container>
+			</tab>
+			<tab tab-name='Effects' tags='tabs'>
+				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+					<checkbox-setting apply-on-change="true" value="disableComboBreakEffect" text="Disable Combo break effect"
+						hover-hint="Disables the two FC lines on the combo counter 'exploding' when you lose your FC"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableWallRumbleAndParticles" text="Disable Wall Clash"
+						hover-hint="Disables wall rumble and the accompanying particles when touching walls with your saber"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableSaberClash" text="Disable Saber Clash"
+						hover-hint="Disables all effects / rumble from touching sabers together"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableCampaignFireworks" text="Disable Campaign Goal Fireworks"
+						hover-hint="Disables the Fireworks effect that happens when you meet a campaign map requirement"
+					/>
+				</modifier-container>
+			</tab>
+			<tab tab-name='Particles' tags='tabs'>
+				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+					<checkbox-setting apply-on-change="true" value="disableCutParticles" text="Disable Cut Particles"
+						hover-hint="Disables the particles that spawn from cutting blocks"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableGlobalParticles" text="Disable World Particles / Dust"
+						hover-hint="Disables the world particles / dust floating around"
+					/>
+				</modifier-container>
+			</tab>
+			<tab tab-name='Quality of Life' tags='tabs'>
+				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+					<checkbox-setting apply-on-change="true" value="disableHealthWarning" text="Skip Health warning"
+						hover-hint="Disables the health warning you get on every game start"
+					/>
+					<checkbox-setting apply-on-change="true" value="basegameFulltextSearch" text="Make Basegame Song-Search Fulltext"
+						hover-hint="Changes the Basegame song search to be fulltext, so when searching for 'the top' it will not find all songs which contain 'the' and 'top' but instead only songs that contain 'the top'"
+					/>
+					<checkbox-setting apply-on-change="true" value="keepGameSettingsOnCancel" text="Dont Reset Basegame settings on Cancel"
+						hover-hint="Some of the settings (Like Controller and Roomadjust) can be changed without actually applying them (Clicking OK). Enabling this allows you to simply click Cancel after changing them so you dont need to wait for the game to reload"
+					/>
+					<slider-setting apply-on-change="true" value="scrollSpeedMultiplier" text="Joystick Scroll speed multiplier" min='0' max='5' increment='0.1'
+						hover-hint="Allows you to increase the maximum speed that you can scroll lists at with your joystick"
+					/>
+				</modifier-container>
+			</tab>
+			<tab tab-name='Graphics' tags='tabs'>
+				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+					<checkbox-setting apply-on-change="true" value="disableFakeWallBloom" text="Disable 'fake wall bloom'"
+						hover-hint="Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps). Disabling this might require a game restart to function correctly"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableBeatLines" text="Disable Beat lines"
+						hover-hint="Disables the extremely bright lines which show up on the floor in columns where notes spawn"
+					/>
+				</modifier-container>
+			</tab>
+			<tab tab-name='UI' tags='tabs'>
+				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+					<checkbox-setting apply-on-change="true" value="staticLightsToggle" text="Add Static lights toggle back"
+						hover-hint="Reverts the two seperate select boxes back to one simple toggle"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableIngameMapEditor" text="Disable Ingame Editor"
+						hover-hint="Prevents the ingame map editor from opening when clicking its button"
+					/>
+				</modifier-container>
+			</tab>
+			<tab tab-name='Cut Rumble' tags='tabs'>
+				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+					<checkbox-setting apply-on-change="true" value="enableCustomRumble" text="Enable custom cut Rumble"/>
+					<slider-setting apply-on-change="true" value="cutRumbleStrength" text="Cut Rumble Strength"
+								hover-hint="Default is 1.0"
+								min="0" max="1" increment="0.05"/>
+
+					<slider-setting apply-on-change="true" value="cutRumbleDuration" text="Cut Rumble Duration"
+									hover-hint="Default is 0.14"
+									min="0" max="0.5" increment="0.01"/>
+				</modifier-container>
+			</tab>
+		</horizontal>
+	</macro.as-host>
+	<horizontal preferred-width='110' child-expand-width='true' horizontal-fit='PreferredSize' pad='3' spacing='2' child-align='MiddleCenter'>
+		<text text="~version" font-size="3" font-color="#CC6E3B" align="Center"/>
+		<clickable-text text='♥ Donate' font-size="4" align="Center" click-event="OpenSponsorModal" on-click="OpenSponsorsModal"/>
+	</horizontal>
+
+	<modal move-to-center='true' hide-event='CloseSponsorModal' show-event='OpenSponsorModal' size-delta-x='80' size-delta-y='86'>
+		<vertical preferred-width='80' vertical-fit='PreferredSize' pad-left='2' pad-right='2' spacing='2' child-expand-width='true'>
+			<horizontal pad-bottom='2' pad-top='1'>
+				<horizontal bg='panel-top-gradient'>
+					<text text='Tweaks55 - Sponsors' align='Center' font-size='4'/>
+				</horizontal>
+			</horizontal>
+			<text text='Are you enjoying my stuff and want to support me?' align='Center'/>
+			<horizontal>
+				<primary-button text='Open Website on Desktop' on-click='OpenSponsorsLink'/>
+				<button text='Close' click-event='CloseSponsorModal'/>
+			</horizontal>
+			<text text='Current sponsors' align='Center'/>
+			<vertical horizontal-fit='Unconstrained' vertical-fit='Unconstrained' preferred-height='50'>
+				<text-page id='sponsorsText' text='Loading...'/>
+			</vertical>
+		</vertical>
+	</modal>
+</vertical>

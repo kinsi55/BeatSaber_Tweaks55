@@ -2,9 +2,7 @@
 using IPA;
 using IPA.Config;
 using IPA.Config.Stores;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using IPALogger = IPA.Logging.Logger;
+using System;
 using System.Reflection;
 using Tweaks55.HarmonyPatches;
 using Tweaks55.UI;
@@ -32,7 +30,8 @@ namespace Tweaks55 {
 
 			Configuration.PluginConfig.Instance = conf.Generated<Configuration.PluginConfig>();
 
-			BSMLSettings.instance.AddSettingsMenu("Tweaks55", "Tweaks55.Views.settings.bsml", Configuration.PluginConfig.Instance);
+			//BSMLSettings.instance.AddSettingsMenu("Tweaks55", "Tweaks55.Views.settings.bsml", Configuration.PluginConfig.Instance);
+			TweaksFlowCoordinator.Initialize();
 
 			harmony = new Harmony("Kinsi55.BeatSaber.Tweaks55");
 			harmony.PatchAll(Assembly.GetExecutingAssembly());
