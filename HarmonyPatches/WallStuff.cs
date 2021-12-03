@@ -21,24 +21,15 @@ namespace Tweaks55.HarmonyPatches {
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("WallClash", ex);
 	}
 
-	[HarmonyPatch(typeof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor))]
+	[HarmonyPatch(typeof(ParametricBoxFakeGlowController), nameof(ParametricBoxFakeGlowController.Refresh))]
 	static class WallFakeBloom {
-		[HarmonyPriority(int.MaxValue)]
-		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il) {
-			if(instructions.ElementAt(84).opcode != OpCodes.Ldarg_0) {
-				Plugin.Log.Warn("disableFakeWallBloom: StretchableObstacle.SetSizeAndColor:84 was not what I expected, not patching it");
-			} else {
-				ILUtil.DynamicPrefix(84, ref instructions, il, AccessTools.Method(typeof(WallFakeBloom), nameof(__DisableFakeBloomProcessing)));
-			}
-			return instructions;
-		}
-
-		static bool __DisableFakeBloomProcessing() => !Configuration.PluginConfig.Instance.disableFakeWallBloom;
-
 		[HarmonyPriority(int.MinValue)]
-		static void Postfix(MonoBehaviour ____obstacleFakeGlow) {
-			if(____obstacleFakeGlow?.gameObject.activeInHierarchy == true && Configuration.PluginConfig.Instance.disableFakeWallBloom)
-				____obstacleFakeGlow.gameObject.SetActive(false);
+		static bool Prefix(ParametricBoxFakeGlowController __instance) {
+			if(!Configuration.PluginConfig.Instance.disableFakeWallBloom)
+				return true;
+
+			__instance.enabled = false;
+			return false;
 		}
 
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("WallFakeBloom", ex);
