@@ -28,6 +28,7 @@ namespace Tweaks55.Configuration {
 		public virtual bool disableBeatLines { get; set; } = false;
 		public virtual bool disableComboBreakEffect { get; set; } = false;
 		public virtual bool disableCampaignFireworks { get; set; } = false;
+		public virtual bool disableBurnMarks { get; set; } = false;
 
 		internal Color bombColor = Color.black;
 
