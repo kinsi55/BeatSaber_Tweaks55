@@ -3,7 +3,7 @@ const { readFileSync, writeFileSync } = require("fs");
 const s = readFileSync("settings.bsml", "utf8");
 
 const tabs = /<tab.*?tab-name=['"](.*?)['"](.*?)<\/tab>/sg;
-const options = /<(?<!text).*text=["'](.*?)["'].*?[\r\n]{0,2}.*?hover-hint="(.*?)"/g;
+const options = /<(?<!text).*text="(.*?)".*?[\r\n]{0,2}.*?hover-hint="(.*?)"/g;
 
 let out = "";
 

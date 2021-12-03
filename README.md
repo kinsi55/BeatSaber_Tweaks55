@@ -39,7 +39,7 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 
 ### Graphics
 
-- `Disable `: Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps). Disabling this might require a game restart to function correctly
+- `Disable 'fake wall bloom'`: Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps). Disabling this might require a game restart to function correctly
 - `Disable Beat lines`: Disables the extremely bright lines which show up on the floor in columns where notes spawn
 
 ### UI
