@@ -23,6 +23,7 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 - `Disable Combo break effect`: Disables the two FC lines on the combo counter 'exploding' when you lose your FC
 - `Disable Wall Clash`: Disables wall rumble and the accompanying particles when touching walls with your saber
 - `Disable Saber Clash`: Disables all effects / rumble from touching sabers together
+- `Disable Floor Burn Marks`: Disables the 'Trails' your sabers leave when they move through the floor
 - `Disable Campaign Goal Fireworks`: Disables the Fireworks effect that happens when you meet a campaign map requirement
 
 ### Particles

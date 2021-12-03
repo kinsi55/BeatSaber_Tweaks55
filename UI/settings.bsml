@@ -35,6 +35,9 @@
 					<checkbox-setting apply-on-change="true" value="disableSaberClash" text="Disable Saber Clash"
 						hover-hint="Disables all effects / rumble from touching sabers together"
 					/>
+					<checkbox-setting apply-on-change="true" value="disableBurnMarks" text="Disable Floor Burn Marks"
+						hover-hint="Disables the 'Trails' your sabers leave when they move through the floor"
+					/>
 					<checkbox-setting apply-on-change="true" value="disableCampaignFireworks" text="Disable Campaign Goal Fireworks"
 						hover-hint="Disables the Fireworks effect that happens when you meet a campaign map requirement"
 					/>
