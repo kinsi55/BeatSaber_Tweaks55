@@ -2,15 +2,15 @@
 using System;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch]
+	[HarmonyPatch(typeof(BeatLineManager), nameof(BeatLineManager.Start))]
 	static class BeatLines {
 		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix() => !Configuration.PluginConfig.Instance.disableBeatLines;
+		static bool Prefix(BeatLineManager __instance) {
+			if(!Configuration.PluginConfig.Instance.disableBeatLines)
+				return true;
 
-		[HarmonyTargetMethods]
-		static IEnumerable<MethodBase> TargetMethods() {
-			yield return AccessTools.Method(typeof(BeatLineManager), nameof(BeatLineManager.HandleNoteWasSpawned));
-			yield return AccessTools.Method(typeof(BeatLineManager), "Update");
+			__instance.enabled = false;
+			return false;
 		}
 
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("BeatLines", ex);

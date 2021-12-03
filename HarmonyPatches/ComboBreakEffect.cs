@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(ComboUIController), nameof(ComboUIController.HandleComboBreakingEventHappened))]
+	[HarmonyPatch(typeof(ComboUIController), nameof(ComboUIController.Start))]
 	class ComboBreakEffect {
 		[HarmonyPriority(int.MaxValue)]
 		static void Postfix(Animator ____animator) {
