@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HarmonyLib;
 using IPA;
 using IPA.Config;
 using IPA.Config.Stores;
@@ -9,11 +6,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using IPALogger = IPA.Logging.Logger;
 using System.Reflection;
-using HarmonyLib;
 using Tweaks55.HarmonyPatches;
-using BeatSaberMarkupLanguage.Settings;
-
-//#define OCULUS
+using Tweaks55.UI;
+using UnityEngine.SceneManagement;
+using IPALogger = IPA.Logging.Logger;
 
 namespace Tweaks55 {
 
