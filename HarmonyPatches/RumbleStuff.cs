@@ -10,11 +10,11 @@ namespace Tweaks55.HarmonyPatches {
 
 		[HarmonyPriority(int.MinValue)]
 		static bool Prefix(ref HapticPresetSO ____rumblePreset) {
-			if(!Configuration.PluginConfig.Instance.enableCustomRumble)
+			if(!Config.Instance.enableCustomRumble)
 				return true;
 
-			_ourPreset._duration = Configuration.PluginConfig.Instance.cutRumbleDuration;
-			_ourPreset._strength = Configuration.PluginConfig.Instance.cutRumbleStrength;
+			_ourPreset._duration = Config.Instance.cutRumbleDuration;
+			_ourPreset._strength = Config.Instance.cutRumbleStrength;
 
 			if(_ourPreset._duration == 0f || _ourPreset._strength == 0f)
 				return false;

@@ -8,7 +8,7 @@ namespace Tweaks55.HarmonyPatches {
 	static class OverrideMaxScrollSpeed {
 		[HarmonyPriority(int.MaxValue)]
 		static void Prefix(ref Vector2 deltaPos) {
-			deltaPos *= Configuration.PluginConfig.Instance.scrollSpeedMultiplier;
+			deltaPos *= Config.Instance.scrollSpeedMultiplier;
 		}
 
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("OverrideMaxScrollSpeed", ex);

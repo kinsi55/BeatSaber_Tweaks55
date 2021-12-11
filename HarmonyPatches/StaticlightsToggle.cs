@@ -22,14 +22,15 @@ namespace Tweaks55.HarmonyPatches {
 			EnvironmentEffectsFilterPresetDropdown ____environmentEffectsFilterDefaultPresetDropdown,
 			EnvironmentEffectsFilterPresetDropdown ____environmentEffectsFilterExpertPlusPresetDropdown
 		) {
-			if(__instance.transform.parent.name == "PlayerSettingsViewController" || instance != null)
+			if(__instance.transform.parent.name == "PlayerSettingsViewController")
 				return;
 
+			lastState = null;
 			instance = __instance;
 			toggle1 = ____environmentEffectsFilterDefaultPresetDropdown;
 			toggle2 = ____environmentEffectsFilterExpertPlusPresetDropdown;
 
-			Setup(Configuration.PluginConfig.Instance.staticLightsToggle);
+			Setup(Config.Instance.staticLightsToggle);
 		}
 
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("StaticlightsToggle", ex);
@@ -37,8 +38,8 @@ namespace Tweaks55.HarmonyPatches {
 		public static void ToggleEffectState(bool setStatic) {
 			var theEffect = setStatic ? EnvironmentEffectsFilterPreset.NoEffects : EnvironmentEffectsFilterPreset.AllEffects;
 
-			toggle1.SelectCellWithLightReductionAmount(theEffect);
-			toggle2.SelectCellWithLightReductionAmount(theEffect);
+			toggle1.SelectCellWithValue(theEffect);
+			toggle2.SelectCellWithValue(theEffect);
 
 			instance.SetIsDirty();
 		}
@@ -49,9 +50,16 @@ namespace Tweaks55.HarmonyPatches {
 			ToggleEffectState(setStatic);
 		}
 
+		static bool? lastState = null;
+
 		public static void Setup(bool enable) {
 			if(instance == null)
 				return;
+
+			if(enable == lastState)
+				return;
+
+			lastState = enable;
 
 			// Here we go... Get the playeroptions container
 			var container = instance.transform.Find("ViewPort/Content/CommonSection");

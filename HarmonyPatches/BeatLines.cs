@@ -6,7 +6,7 @@ namespace Tweaks55.HarmonyPatches {
 	static class BeatLines {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(BeatLineManager __instance) {
-			if(!Configuration.PluginConfig.Instance.disableBeatLines)
+			if(!Config.Instance.disableBeatLines)
 				return true;
 
 			__instance.enabled = false;

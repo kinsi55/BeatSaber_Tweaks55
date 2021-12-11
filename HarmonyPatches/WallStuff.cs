@@ -7,7 +7,7 @@ namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
 	static class WallClash {
 		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix() => !Configuration.PluginConfig.Instance.disableWallRumbleAndParticles;
+		static bool Prefix() => !Config.Instance.disableWallRumbleAndParticles;
 
 		static IEnumerable<MethodBase> TargetMethods() {
 			yield return AccessTools.Method(typeof(ObstacleSaberSparkleEffectManager), "Update");
@@ -25,7 +25,7 @@ namespace Tweaks55.HarmonyPatches {
 	static class WallFakeBloom {
 		[HarmonyPriority(int.MinValue)]
 		static bool Prefix(ParametricBoxFakeGlowController __instance) {
-			if(!Configuration.PluginConfig.Instance.disableFakeWallBloom)
+			if(!Config.Instance.disableFakeWallBloom)
 				return true;
 
 			__instance.enabled = false;

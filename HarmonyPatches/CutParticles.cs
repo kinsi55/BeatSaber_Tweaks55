@@ -7,7 +7,7 @@ namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
 	static class CutParticles {
 		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix() => !Configuration.PluginConfig.Instance.disableCutParticles;
+		static bool Prefix() => !Config.Instance.disableCutParticles;
 
 		[HarmonyTargetMethods]
 		static IEnumerable<MethodBase> TargetMethods() {

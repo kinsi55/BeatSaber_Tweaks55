@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using Tweaks55.Configuration;
 
 namespace Tweaks55.UI {
 	class TweaksFlowCoordinator : FlowCoordinator {
@@ -37,21 +36,34 @@ namespace Tweaks55.UI {
 
 		static TweaksFlowCoordinator flow = null;
 
+		static MenuButton theButton;
+
 		public static void Initialize() {
 
-			MenuButtons.instance.RegisterButton(new MenuButton("Tweaks55", "A bunch of settings that really should just exist in basegame!", () => {
+			MenuButtons.instance.RegisterButton(theButton ??= new MenuButton("Tweaks55", "A bunch of settings that really should just exist in basegame!", () => {
 				if(flow == null)
 					flow = BeatSaberUI.CreateFlowCoordinator<TweaksFlowCoordinator>();
 
 				flow.ShowFlow();
 			}, true));
 		}
+
+		public static void Deinit() {
+			if(theButton != null)
+				MenuButtons.instance.UnregisterButton(theButton);
+		}
 	}
 
 	[HotReload(RelativePathToLayout = @"./settings.bsml")]
 	[ViewDefinition("Tweaks55.UI.settings.bsml")]
 	class MAN : BSMLAutomaticViewController {
-		PluginConfig config = PluginConfig.Instance;
+		Config config = Config.Instance;
+
+
+		void ClearMenuLightColor() {
+			config.menuLightColor = new UnityEngine.Color(0, 0, 0, 0);
+		}
+
 
 		private readonly string version = $"Version {Assembly.GetExecutingAssembly().GetName().Version.ToString(3)} by Kinsi55";
 

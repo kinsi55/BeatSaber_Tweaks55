@@ -1,17 +1,17 @@
 ﻿<vertical child-control-height='false' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
 
 
-	<macro.as-host host='config'>
-		<tab-selector tab-tag='tabs'/>
-		
-		<!--<horizontal preferred-width='110' child-expand-width='true' horizontal-fit='PreferredSize' pad='3'>
+	<tab-selector tab-tag='tabs'/>
+
+	<!--<horizontal preferred-width='110' child-expand-width='true' horizontal-fit='PreferredSize' pad='3'>
 			<text word-wrapping='true' font-size='3.2' face-color='#DDD' font-align='Center'
 				text='To make settings easier to find, some settings are listed in multiple tabs if they control multiple aspects at the same time (Like wall Rumble and Particles) or if they fit into multiple categories'
 		/>
 		</horizontal>-->
-		
-		<horizontal preferred-width='100' preferred-height='60'>
-			<tab tab-name='Gameplay' tags='tabs'>
+
+	<horizontal preferred-width='100' preferred-height='60'>
+		<tab tab-name='Gameplay' tags='tabs'>
+			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 					<color-setting apply-on-change="true" value="bombColor" text="Bomb color"
 						hover-hint="Changes the color of bombs..."
@@ -23,8 +23,10 @@
 						hover-hint="Disables the Score display you get per cut (115 etc)"
 					/>
 				</modifier-container>
-			</tab>
-			<tab tab-name='Effects' tags='tabs'>
+			</macro.as-host>
+		</tab>
+		<tab tab-name='Effects' tags='tabs'>
+			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 					<checkbox-setting apply-on-change="true" value="disableComboBreakEffect" text="Disable Combo break effect"
 						hover-hint="Disables the two FC lines on the combo counter 'exploding' when you lose your FC"
@@ -42,8 +44,10 @@
 						hover-hint="Disables the Fireworks effect that happens when you meet a campaign map requirement"
 					/>
 				</modifier-container>
-			</tab>
-			<tab tab-name='Particles' tags='tabs'>
+			</macro.as-host>
+		</tab>
+		<tab tab-name='Particles' tags='tabs'>
+			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 					<checkbox-setting apply-on-change="true" value="disableCutParticles" text="Disable Cut Particles"
 						hover-hint="Disables the particles that spawn from cutting blocks"
@@ -52,8 +56,10 @@
 						hover-hint="Disables the world particles / dust floating around"
 					/>
 				</modifier-container>
-			</tab>
-			<tab tab-name='Quality of Life' tags='tabs'>
+			</macro.as-host>
+		</tab>
+		<tab tab-name='Quality of Life' tags='tabs'>
+			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 					<checkbox-setting apply-on-change="true" value="disableHealthWarning" text="Skip Health warning"
 						hover-hint="Disables the health warning you get on every game start"
@@ -68,8 +74,10 @@
 						hover-hint="Allows you to increase the maximum speed that you can scroll lists at with your joystick"
 					/>
 				</modifier-container>
-			</tab>
-			<tab tab-name='Graphics' tags='tabs'>
+			</macro.as-host>
+		</tab>
+		<tab tab-name='Graphics' tags='tabs'>
+			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 					<checkbox-setting apply-on-change="true" value="disableFakeWallBloom" text="Disable 'fake wall bloom'"
 						hover-hint="Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps). Disabling this might require a game restart to function correctly"
@@ -78,18 +86,30 @@
 						hover-hint="Disables the extremely bright lines which show up on the floor in columns where notes spawn"
 					/>
 				</modifier-container>
-			</tab>
-			<tab tab-name='UI' tags='tabs'>
-				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+			</macro.as-host>
+		</tab>
+		<tab tab-name='UI' tags='tabs'>
+			<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+				<macro.as-host host='config'>
 					<checkbox-setting apply-on-change="true" value="staticLightsToggle" text="Add Static lights toggle back"
 						hover-hint="Reverts the two seperate select boxes back to one simple toggle"
 					/>
 					<checkbox-setting apply-on-change="true" value="disableIngameMapEditor" text="Disable Ingame Editor"
 						hover-hint="Prevents the ingame map editor from opening when clicking its button"
 					/>
-				</modifier-container>
-			</tab>
-			<tab tab-name='Cut Rumble' tags='tabs'>
+				</macro.as-host>
+				<horizontal>
+					<macro.as-host host='config'>
+						<color-setting apply-on-change="true" bind-value="true" value="menuLightColor" text="Menu lighting color"
+							hover-hint="Changes the color of the menu lighting"
+						/>
+					</macro.as-host>
+					<button text="Reset" on-click="ClearMenuLightColor"/>
+				</horizontal>
+			</modifier-container>
+		</tab>
+		<tab tab-name='Cut Rumble' tags='tabs'>
+			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 					<checkbox-setting apply-on-change="true" value="enableCustomRumble" text="Enable custom cut Rumble"/>
 					<slider-setting apply-on-change="true" value="cutRumbleStrength" text="Cut Rumble Strength"
@@ -100,9 +120,9 @@
 									hover-hint="Default is 0.14"
 									min="0" max="0.5" increment="0.01"/>
 				</modifier-container>
-			</tab>
-		</horizontal>
-	</macro.as-host>
+			</macro.as-host>
+		</tab>
+	</horizontal>
 	<horizontal preferred-width='110' child-expand-width='true' horizontal-fit='PreferredSize' pad='3' spacing='2' child-align='MiddleCenter'>
 		<text text="~version" font-size="3" font-color="#CC6E3B" align="Center"/>
 		<clickable-text text='♥ Donate' font-size="4" align="Center" click-event="OpenSponsorModal" on-click="OpenSponsorsModal"/>

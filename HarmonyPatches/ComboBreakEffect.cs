@@ -7,7 +7,7 @@ namespace Tweaks55.HarmonyPatches {
 	class ComboBreakEffect {
 		[HarmonyPriority(int.MaxValue)]
 		static void Postfix(Animator ____animator) {
-			if(!Configuration.PluginConfig.Instance.disableComboBreakEffect)
+			if(!Config.Instance.disableComboBreakEffect)
 				return;
 
 			____animator.speed = 69420f;

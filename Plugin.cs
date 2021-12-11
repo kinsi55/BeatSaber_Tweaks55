@@ -11,10 +11,12 @@ using IPALogger = IPA.Logging.Logger;
 
 namespace Tweaks55 {
 
-	[Plugin(RuntimeOptions.SingleStartInit)]
+	[Plugin(RuntimeOptions.DynamicInit)]
 	public class Plugin {
 		internal static Plugin Instance { get; private set; }
 		internal static IPALogger Log { get; private set; }
+
+		internal static bool enabled { get; private set; } = true;
 
 		public static Harmony harmony;
 
@@ -24,19 +26,13 @@ namespace Tweaks55 {
 		/// [Init] methods that use a Constructor or called before regular methods like InitWithConfig.
 		/// Only use [Init] with one Constructor.
 		/// </summary>Console.WriteLine
-		public void Init(Config conf, IPALogger logger) {
+		public void Init(IPA.Config.Config conf, IPALogger logger) {
 			Instance = this;
 			Log = logger;
 
-			Configuration.PluginConfig.Instance = conf.Generated<Configuration.PluginConfig>();
-
-			//BSMLSettings.instance.AddSettingsMenu("Tweaks55", "Tweaks55.Views.settings.bsml", Configuration.PluginConfig.Instance);
-			TweaksFlowCoordinator.Initialize();
+			Config.Instance = conf.Generated<Config>();
 
 			harmony = new Harmony("Kinsi55.BeatSaber.Tweaks55");
-			harmony.PatchAll(Assembly.GetExecutingAssembly());
-
-			SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 		}
 
 		private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1) {
@@ -50,6 +46,33 @@ namespace Tweaks55 {
 				Plugin.Log.Debug(ex);
 			}
 			return null;
+		}
+
+		[OnEnable]
+		public void OnEnable() {
+			enabled = true;
+			harmony.PatchAll(Assembly.GetExecutingAssembly());
+
+			Config.Instance.Changed();
+			TweaksFlowCoordinator.Initialize();
+
+			SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+		}
+
+		/// <summary>
+		/// Called when the plugin is disabled and on Beat Saber quit. It is important to clean up any Harmony patches, GameObjects, and Monobehaviours here.
+		/// The game should be left in a state as if the plugin was never started.
+		/// Methods marked [OnDisable] must return void or Task.
+		/// </summary>
+		[OnDisable]
+		public void OnDisable() {
+			enabled = false;
+
+			harmony.UnpatchSelf();
+			TweaksFlowCoordinator.Deinit();
+			GlobalParticles.SetEnabledState(true);
+
+			SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
 		}
 	}
 }

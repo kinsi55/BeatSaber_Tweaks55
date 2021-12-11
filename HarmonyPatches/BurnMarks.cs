@@ -9,7 +9,7 @@ namespace Tweaks55.HarmonyPatches {
 	static class BurnMark {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(MonoBehaviour __instance) {
-			if(!Configuration.PluginConfig.Instance.disableBurnMarks)
+			if(!Config.Instance.disableBurnMarks)
 				return true;
 
 			__instance.enabled = false;

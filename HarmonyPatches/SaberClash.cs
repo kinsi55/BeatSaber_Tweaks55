@@ -6,7 +6,7 @@ namespace Tweaks55.HarmonyPatches {
 	static class SaberClash {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(SaberClashEffect __instance) {
-			if(!Configuration.PluginConfig.Instance.disableSaberClash)
+			if(!Config.Instance.disableSaberClash)
 				return true;
 
 			__instance.enabled = false;
