@@ -71,6 +71,7 @@ namespace Tweaks55 {
 			harmony.UnpatchSelf();
 			TweaksFlowCoordinator.Deinit();
 			GlobalParticles.SetEnabledState(true);
+			MenuLightColor.SetColor(new UnityEngine.Color(0, 0, 0, 0));
 
 			SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
 		}
