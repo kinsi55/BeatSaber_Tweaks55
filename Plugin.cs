@@ -72,6 +72,7 @@ namespace Tweaks55 {
 			TweaksFlowCoordinator.Deinit();
 			GlobalParticles.SetEnabledState(true);
 			MenuLightColor.SetColor(new UnityEngine.Color(0, 0, 0, 0));
+			StaticlightsToggle.Setup(false);
 
 			SceneManager.activeSceneChanged -= SceneManager_activeSceneChanged;
 		}
