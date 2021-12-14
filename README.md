@@ -1,7 +1,7 @@
 # BeatSaber_Tweaks55
 A collection of various tweaks which by themselves are to simple for their own designated mods
 
-Currently compatible game versions: **1.18 and up**, for older versions see older releases.
+The Game version(s) specific releases are compatible with are mentioned in the Release title. If you need the plugin for an older version - Grab an older release that fits 🤯
 
 ### Install
 
