@@ -9,40 +9,45 @@ namespace Tweaks55 {
 
 	internal class Config {
 		public static Config Instance { get; set; }
-		public virtual bool disableWallRumbleAndParticles { get; set; } = false;
-		public virtual bool disableSaberClash { get; set; } = false;
-		public virtual bool disableCutParticles { get; set; } = false;
+
+		public Color bombColor = Color.black;
+		public bool disableDebris { get; set; } = false;
+		public bool disableSliceScore { get; set; } = false;
+
+		public bool disableComboBreakEffect { get; set; } = false;
+		public bool disableWallRumbleAndParticles { get; set; } = false;
+		public bool disableSaberClash { get; set; } = false;
+		public bool disableBurnMarks { get; set; } = false;
+		public bool disableCampaignFireworks { get; set; } = false;
+
+
+		public bool disableCutParticles { get; set; } = false;
 		public virtual bool disableGlobalParticles { get; set; } = false;
-		public virtual bool disableDebris { get; set; } = false;
-		public virtual bool disableSliceScore { get; set; } = false;
 
 
-		public virtual bool disableIngameMapEditor { get; set; } = false;
-		public virtual bool keepGameSettingsOnCancel { get; set; } = false;
-		public virtual bool disableHealthWarning { get; set; } = false;
+		public bool disableHealthWarning { get; set; } = false;
+		public bool basegameFulltextSearch { get; set; } = false;
+		public bool keepGameSettingsOnCancel { get; set; } = false;
+		public float scrollSpeedMultiplier { get; set; } = 1f;
+
+		public bool disableFakeWallBloom { get; set; } = false;
+		public bool disableBeatLines { get; set; } = false;
 
 
-
-		public virtual bool disableFakeWallBloom { get; set; } = false;
 		public virtual bool staticLightsToggle { get; set; } = false;
-		public virtual bool disableBeatLines { get; set; } = false;
-		public virtual bool disableComboBreakEffect { get; set; } = false;
-		public virtual bool disableCampaignFireworks { get; set; } = false;
-		public virtual bool disableBurnMarks { get; set; } = false;
-
-		internal Color bombColor = Color.black;
+		public bool disableIngameMapEditor { get; set; } = false;
+		public bool disableRawScore { get; set; } = false;
 		public virtual Color menuLightColor { get; set; } = new Color(0, 0, 0, 0);
 
 
-		public virtual bool basegameFulltextSearch { get; set; } = false;
-
-		public virtual float scrollSpeedMultiplier { get; set; } = 1f;
 
 
 
-		public virtual bool enableCustomRumble { get; set; } = false;
-		public virtual float cutRumbleStrength { get; set; } = 0.075f;
-		public virtual float cutRumbleDuration { get; set; } = 0.08f;
+
+
+		public bool enableCustomRumble { get; set; } = false;
+		public float cutRumbleStrength { get; set; } = 0.075f;
+		public float cutRumbleDuration { get; set; } = 0.08f;
 
 		/// <summary>
 		/// This is called whenever BSIPA reads the config from disk (including when file changes are detected).

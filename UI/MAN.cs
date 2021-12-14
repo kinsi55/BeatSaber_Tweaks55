@@ -26,6 +26,7 @@ namespace Tweaks55.UI {
 
 		protected override void BackButtonWasPressed(ViewController topViewController) {
 			BeatSaberUI.MainFlowCoordinator.DismissFlowCoordinator(this, null, ViewController.AnimationDirection.Horizontal);
+			Config.Instance.Changed();
 		}
 
 		public void ShowFlow() {
