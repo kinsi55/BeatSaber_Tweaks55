@@ -80,6 +80,9 @@ namespace Tweaks55.UI {
 
 				_ = IPA.Utilities.Async.UnityMainThreadTaskScheduler.Factory.StartNew(() => {
 					sponsorsText.text = desc;
+					// There is almost certainly a better way to update / correctly set the scrollbar size...
+					sponsorsText.gameObject.SetActive(false);
+					sponsorsText.gameObject.SetActive(true);
 				});
 			}).ConfigureAwait(false);
 		}
