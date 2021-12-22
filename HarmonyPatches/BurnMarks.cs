@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch]
+	[HarmonyPatch(typeof(SaberBurnMarkArea), nameof(SaberBurnMarkArea.OnEnable))]
 	static class BurnMark {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(MonoBehaviour __instance) {
@@ -14,15 +14,6 @@ namespace Tweaks55.HarmonyPatches {
 
 			__instance.enabled = false;
 			return false;
-		}
-
-		static IEnumerable<MethodBase> TargetMethods() {
-			yield return AccessTools.Method(typeof(SaberBurnMarkArea), nameof(SaberBurnMarkArea.OnEnable));
-
-			var x = AccessTools.TypeByName("SiraUtil.Sabers.SiraSaberBurnMarkArea")?.GetMethod("OnEnable");
-
-			if(x != null)
-				yield return x;
 		}
 
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("BurnMark", ex);
