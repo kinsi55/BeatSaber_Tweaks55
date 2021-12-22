@@ -47,6 +47,8 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 
 - `Add Static lights toggle back`: Reverts the two seperate select boxes back to one simple toggle
 - `Disable Ingame Editor`: Prevents the ingame map editor from opening when clicking its button
+- `Hide / Disable 'Raw Score' number`: Hides the 'Raw' amount of Score in the Score Display, keeping only Rank and 'Accuacy' (E.g. 95%)
+- `Menu lighting color`: Changes the color of the menu lighting
 
 ### Cut Rumble
 
