@@ -10,6 +10,6 @@ namespace Tweaks55.HarmonyPatches {
 				goStraightToMenu = true;
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("PatchHealthWarning", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

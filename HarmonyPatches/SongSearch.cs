@@ -12,6 +12,6 @@ namespace Tweaks55.HarmonyPatches {
 				searchTexts = new string[] { string.Join(" ", searchTexts) };
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("BasegameSearchFulltext", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

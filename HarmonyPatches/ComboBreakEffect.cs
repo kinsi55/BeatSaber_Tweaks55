@@ -13,6 +13,6 @@ namespace Tweaks55.HarmonyPatches {
 			____animator.speed = 69420f;
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("ComboBreakEffect", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

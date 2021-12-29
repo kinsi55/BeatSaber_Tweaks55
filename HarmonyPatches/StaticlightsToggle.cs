@@ -33,7 +33,7 @@ namespace Tweaks55.HarmonyPatches {
 			Setup(Config.Instance.staticLightsToggle);
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("StaticlightsToggle", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 
 		public static void ToggleEffectState(bool setStatic) {
 			var theEffect = setStatic ? EnvironmentEffectsFilterPreset.NoEffects : EnvironmentEffectsFilterPreset.AllEffects;

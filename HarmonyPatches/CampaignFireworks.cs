@@ -19,6 +19,6 @@ namespace Tweaks55.HarmonyPatches {
 
 		static bool __DisableCampaignFireworks() => !Config.Instance.disableCampaignFireworks;
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("CampaignFireworks", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

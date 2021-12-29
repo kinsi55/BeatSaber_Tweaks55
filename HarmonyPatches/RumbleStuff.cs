@@ -24,6 +24,6 @@ namespace Tweaks55.HarmonyPatches {
 			return true;
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("RumbleStuff", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

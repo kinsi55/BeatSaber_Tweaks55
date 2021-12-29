@@ -7,6 +7,6 @@ namespace Tweaks55.HarmonyPatches {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Config.Instance.disableDebris;
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("Debris", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

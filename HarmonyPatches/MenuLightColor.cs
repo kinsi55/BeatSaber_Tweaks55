@@ -27,7 +27,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(instance == null || _defaultPreset == null || !(_defaultPreset.playersPlaceNeonsColor is SimpleColorSO mmmmm))
 				return;
 
-			if(Config.Instance.menuLightColor == new Color(0, 0, 0, 0))
+			if(Config.Instance.menuLightColor.a == 0)
 				color = defaultColor;
 				
 			mmmmm.SetColor(color);
@@ -38,6 +38,6 @@ namespace Tweaks55.HarmonyPatches {
 			}
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("MenuLightColor", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

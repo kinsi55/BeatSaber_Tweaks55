@@ -22,6 +22,6 @@ namespace Tweaks55.HarmonyPatches {
 			c.GetComponent<Renderer>()?.material?.SetColor("_SimpleColor", Config.Instance.bombColor);
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("BombColor", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

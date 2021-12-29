@@ -9,12 +9,12 @@ namespace Tweaks55.HarmonyPatches {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Config.Instance.disableWallRumbleAndParticles;
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("WallClash", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
 	[HarmonyPatch(typeof(ParametricBoxFakeGlowController), nameof(ParametricBoxFakeGlowController.Refresh))]
 	static class WallFakeBloom {
-		[HarmonyPriority(int.MinValue)]
+		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(ParametricBoxFakeGlowController __instance) {
 			if(!Config.Instance.disableFakeWallBloom)
 				return true;
@@ -23,6 +23,6 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("WallFakeBloom", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

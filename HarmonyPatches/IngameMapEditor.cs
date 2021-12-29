@@ -9,6 +9,6 @@ namespace Tweaks55.HarmonyPatches {
 		static bool Prefix(MainMenuViewController.MenuButton menuButton) =>
 			menuButton != MainMenuViewController.MenuButton.BeatmapEditor || !Config.Instance.disableIngameMapEditor;
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("DisableBeatmapEditor", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

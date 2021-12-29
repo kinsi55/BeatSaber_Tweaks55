@@ -16,6 +16,6 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("BurnMark", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

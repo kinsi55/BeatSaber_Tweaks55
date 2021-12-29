@@ -18,6 +18,6 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("RawScoreDisplay", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

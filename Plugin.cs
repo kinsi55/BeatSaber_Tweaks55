@@ -3,6 +3,7 @@ using IPA;
 using IPA.Config;
 using IPA.Config.Stores;
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using Tweaks55.HarmonyPatches;
 using Tweaks55.UI;
@@ -40,9 +41,9 @@ namespace Tweaks55 {
 				GlobalParticles.SetEnabledState();
 		}
 
-		public static Exception PatchFailed(string name, Exception ex) {
+		public static Exception PatchFailed(Exception ex) {
 			if(ex != null) {
-				Plugin.Log.Warn($"{name} Tweak failed to setup! Ignoring");
+				Plugin.Log.Warn($"{new StackTrace().GetFrame(1).GetMethod().DeclaringType.Name} Tweak failed to setup! Ignoring");
 				Plugin.Log.Debug(ex);
 			}
 			return null;

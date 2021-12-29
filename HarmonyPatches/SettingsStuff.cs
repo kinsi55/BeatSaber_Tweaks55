@@ -7,6 +7,6 @@ namespace Tweaks55.HarmonyPatches {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Config.Instance.keepGameSettingsOnCancel;
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("DisableSettingsResetONCancel", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

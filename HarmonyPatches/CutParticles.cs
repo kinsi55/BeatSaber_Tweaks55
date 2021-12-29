@@ -15,6 +15,6 @@ namespace Tweaks55.HarmonyPatches {
 			yield return AccessTools.Method(typeof(NoteCutParticlesEffect), "Awake");
 		}
 
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed("CutParticles", ex);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
