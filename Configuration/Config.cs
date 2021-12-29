@@ -25,6 +25,7 @@ namespace Tweaks55 {
 
 		public bool disableCutParticles { get; set; } = false;
 		public virtual bool disableGlobalParticles { get; set; } = false;
+		public virtual bool disableBombExplosion { get; set; } = false;
 
 
 		public bool disableHealthWarning { get; set; } = false;
