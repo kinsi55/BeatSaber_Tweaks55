@@ -3,10 +3,12 @@ using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.MenuButtons;
 using BeatSaberMarkupLanguage.ViewControllers;
 using HMUI;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Tweaks55.UI {
 	class TweaksFlowCoordinator : FlowCoordinator {
@@ -57,12 +59,31 @@ namespace Tweaks55.UI {
 
 	[HotReload(RelativePathToLayout = @"./settings.bsml")]
 	[ViewDefinition("Tweaks55.UI.settings.bsml")]
-	class MAN : BSMLAutomaticViewController {
+	class MAN : BSMLAutomaticViewController, INotifyPropertyChanged {
 		Config config = Config.Instance;
 
 
 		void ClearMenuLightColor() {
 			config.menuLightColor = new UnityEngine.Color(0, 0, 0, 0);
+			NotifyPropertyChanged("menuLightColor");
+		}
+		void ClearWallOutlineColor() {
+			config.wallOutlineColor = Color.white;
+			NotifyPropertyChanged("wallOutlineColor");
+		}
+
+		Color wallOutlineColor {
+			get {
+				var x = config.wallOutlineColor;
+				x.a = 1f;
+				return x;
+			}
+			set {
+				var lum = Mathf.Max(value.r, value.g, value.b);
+
+				config.wallOutlineColor = new Color(value.r, value.g, value.b, lum / 3f);
+				NotifyPropertyChanged("wallOutlineColor");
+			}
 		}
 
 

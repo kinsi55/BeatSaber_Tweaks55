@@ -11,19 +11,30 @@
 
 	<horizontal preferred-width='100' preferred-height='60'>
 		<tab tab-name='Gameplay' tags='tabs'>
-			<macro.as-host host='config'>
-				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
-					<color-setting apply-on-change="true" value="bombColor" text="Bomb color"
+			<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+				<macro.as-host host='config'>
+					<color-setting apply-on-change="true" value="bombColor" text="Bomb Color"
 						hover-hint="Changes the color of bombs..."
 					/>
+				</macro.as-host>
+				<horizontal>
+					<color-setting apply-on-change="true" bind-value="true" value="wallOutlineColor" text="Wall Outline Color"
+						hover-hint="Changes outline color of walls"
+					/>
+					<button text="Reset" on-click="ClearWallOutlineColor"/>
+				</horizontal>
+				<macro.as-host host='config'>
 					<checkbox-setting apply-on-change="true" value="disableDebris" text="Disable Debris"
 						hover-hint="Disables Debris"
+					/>
+					<checkbox-setting apply-on-change="true" value="transparentWalls" text="Make Walls Transparent"
+						hover-hint="Makes walls fully transparent forsenCD"
 					/>
 					<checkbox-setting apply-on-change="true" value="disableSliceScore" text="Disable Slice Score"
 						hover-hint="Disables the Score display you get per cut (115 etc)"
 					/>
-				</modifier-container>
-			</macro.as-host>
+				</macro.as-host>
+			</modifier-container>
 		</tab>
 		<tab tab-name='Effects' tags='tabs'>
 			<macro.as-host host='config'>
@@ -51,6 +62,9 @@
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 					<checkbox-setting apply-on-change="true" value="disableCutParticles" text="Disable Cut Particles"
 						hover-hint="Disables the particles that spawn from cutting blocks"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableBombExplosion" text="Disable Bomb Explosion"
+						hover-hint="Disables the Explosion effect / Particles when you touch a bomb"
 					/>
 					<checkbox-setting apply-on-change="true" value="disableGlobalParticles" text="Disable World Particles / Dust"
 						hover-hint="Disables the world particles / dust floating around"

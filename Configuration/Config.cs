@@ -11,8 +11,10 @@ namespace Tweaks55 {
 		public static Config Instance { get; set; }
 
 		public Color bombColor = Color.black;
+		public Color wallOutlineColor { get; set; } = Color.white;
 		public bool disableDebris { get; set; } = false;
 		public bool disableSliceScore { get; set; } = false;
+		public bool transparentWalls { get; set; } = false;
 
 		public bool disableComboBreakEffect { get; set; } = false;
 		public bool disableWallRumbleAndParticles { get; set; } = false;
