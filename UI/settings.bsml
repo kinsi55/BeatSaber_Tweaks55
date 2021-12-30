@@ -106,7 +106,7 @@
 						hover-hint="Prevents the ingame map editor from opening when clicking its button"
 					/>
 					<checkbox-setting apply-on-change="true" value="disableRawScore" text="Hide / Disable 'Raw Score' number"
-						hover-hint="Hides the 'Raw' amount of Score in the Score Display, keeping only Rank and 'Accuacy' (E.g. 95%)"
+						hover-hint="Hides the 'Raw' amount of Score in the Score Display, keeping only Rank and 'Accuracy' (E.g. 95%)"
 					/>
 				</macro.as-host>
 				<horizontal>
