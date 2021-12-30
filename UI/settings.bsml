@@ -9,7 +9,7 @@
 		/>
 		</horizontal>-->
 
-	<horizontal preferred-width='100' preferred-height='60'>
+	<horizontal preferred-width='100' preferred-height='58' pad-top='8'>
 		<tab tab-name='Gameplay' tags='tabs'>
 			<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 				<macro.as-host host='config'>
@@ -36,9 +36,18 @@
 				</macro.as-host>
 			</modifier-container>
 		</tab>
-		<tab tab-name='Effects' tags='tabs'>
+		<tab tab-name='Effects / Particles' tags='tabs'>
 			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
+					<checkbox-setting apply-on-change="true" value="disableCutParticles" text="Disable Cut Particles"
+						hover-hint="Disables the particles that spawn from cutting blocks"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableBombExplosion" text="Disable Bomb Explosion"
+						hover-hint="Disables the Explosion effect / Particles when you touch a bomb"
+					/>
+					<checkbox-setting apply-on-change="true" value="disableGlobalParticles" text="Disable World Particles / Dust"
+						hover-hint="Disables the world particles / dust floating around"
+					/>
 					<checkbox-setting apply-on-change="true" value="disableComboBreakEffect" text="Disable Combo break effect"
 						hover-hint="Disables the two FC lines on the combo counter 'exploding' when you lose your FC"
 					/>
@@ -53,21 +62,6 @@
 					/>
 					<checkbox-setting apply-on-change="true" value="disableCampaignFireworks" text="Disable Campaign Goal Fireworks"
 						hover-hint="Disables the Fireworks effect that happens when you meet a campaign map requirement"
-					/>
-				</modifier-container>
-			</macro.as-host>
-		</tab>
-		<tab tab-name='Particles' tags='tabs'>
-			<macro.as-host host='config'>
-				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
-					<checkbox-setting apply-on-change="true" value="disableCutParticles" text="Disable Cut Particles"
-						hover-hint="Disables the particles that spawn from cutting blocks"
-					/>
-					<checkbox-setting apply-on-change="true" value="disableBombExplosion" text="Disable Bomb Explosion"
-						hover-hint="Disables the Explosion effect / Particles when you touch a bomb"
-					/>
-					<checkbox-setting apply-on-change="true" value="disableGlobalParticles" text="Disable World Particles / Dust"
-						hover-hint="Disables the world particles / dust floating around"
 					/>
 				</modifier-container>
 			</macro.as-host>
@@ -108,7 +102,7 @@
 					<checkbox-setting apply-on-change="true" value="staticLightsToggle" text="Add Static lights toggle back"
 						hover-hint="Reverts the two seperate select boxes back to one simple toggle"
 					/>
-					<checkbox-setting apply-on-change="true" value="disableIngameMapEditor" text="Disable Ingame Editor"
+					<checkbox-setting apply-on-change="true" value="disableIngameMapEditor" text="Disable Ingame Map Editor"
 						hover-hint="Prevents the ingame map editor from opening when clicking its button"
 					/>
 					<checkbox-setting apply-on-change="true" value="disableRawScore" text="Hide / Disable 'Raw Score' number"
