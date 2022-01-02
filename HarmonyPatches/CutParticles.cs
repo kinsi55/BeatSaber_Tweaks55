@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Tweaks55.Util;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
@@ -11,8 +12,8 @@ namespace Tweaks55.HarmonyPatches {
 
 		[HarmonyTargetMethods]
 		static IEnumerable<MethodBase> TargetMethods() {
-			yield return AccessTools.Method(typeof(NoteCutParticlesEffect), nameof(NoteCutParticlesEffect.SpawnParticles));
-			yield return AccessTools.Method(typeof(NoteCutParticlesEffect), "Awake");
+			yield return Resolver.GetMethod(nameof(NoteCutParticlesEffect), nameof(NoteCutParticlesEffect.SpawnParticles));
+			yield return Resolver.GetMethod(nameof(NoteCutParticlesEffect), nameof(NoteCutParticlesEffect.Awake));
 		}
 
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);

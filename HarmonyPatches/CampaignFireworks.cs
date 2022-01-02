@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
+using Tweaks55.Util;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(MissionObjectiveGameUIView), nameof(MissionObjectiveGameUIView.RefreshIcon))]
+	[HarmonyPatch]
 	static class CampaignFireworks {
 		[HarmonyPriority(int.MinValue)]
 		static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il) {
@@ -19,6 +21,7 @@ namespace Tweaks55.HarmonyPatches {
 
 		static bool __DisableCampaignFireworks() => !Config.Instance.disableCampaignFireworks;
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(MissionObjectiveGameUIView), nameof(MissionObjectiveGameUIView.RefreshIcon));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

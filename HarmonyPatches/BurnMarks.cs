@@ -1,11 +1,11 @@
 ﻿using HarmonyLib;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
+using Tweaks55.Util;
 using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(SaberBurnMarkArea), nameof(SaberBurnMarkArea.OnEnable))]
+	[HarmonyPatch]
 	static class BurnMark {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(MonoBehaviour __instance) {
@@ -16,6 +16,7 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(SaberBurnMarkArea), nameof(SaberBurnMarkArea.OnEnable));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
+﻿using HarmonyLib;
+using System;
+using System.Reflection;
+using Tweaks55.Util;
 using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(MenuLightsManager), nameof(MenuLightsManager.Start))]
+	[HarmonyPatch]
 	static class MenuLightColor {
 		static MenuLightsManager instance;
 		static MenuLightsPresetSO _defaultPreset;
@@ -29,7 +27,7 @@ namespace Tweaks55.HarmonyPatches {
 
 			if(Config.Instance.menuLightColor.a == 0)
 				color = defaultColor;
-				
+
 			mmmmm.SetColor(color);
 
 			if(doApply) {
@@ -38,6 +36,7 @@ namespace Tweaks55.HarmonyPatches {
 			}
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(MenuLightsManager), nameof(MenuLightsManager.Start));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

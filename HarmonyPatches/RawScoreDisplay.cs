@@ -1,13 +1,11 @@
 ﻿using HarmonyLib;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using TMPro;
+using Tweaks55.Util;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(ScoreUIController), nameof(ScoreUIController.UpdateScore))]
+	[HarmonyPatch]
 	static class RawScoreDisplay {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix(TextMeshProUGUI ____scoreText) {
@@ -18,6 +16,7 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ScoreUIController), nameof(ScoreUIController.UpdateScore));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

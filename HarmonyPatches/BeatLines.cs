@@ -1,11 +1,14 @@
 ﻿using HarmonyLib;
 using System;
+using System.Reflection;
+using Tweaks55.Util;
+using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(BeatLineManager), nameof(BeatLineManager.Start))]
+	[HarmonyPatch]
 	static class BeatLines {
 		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix(BeatLineManager __instance) {
+		static bool Prefix(MonoBehaviour __instance) {
 			if(!Config.Instance.disableBeatLines)
 				return true;
 
@@ -13,6 +16,7 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatLineManager), nameof(BeatLineManager.Start));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

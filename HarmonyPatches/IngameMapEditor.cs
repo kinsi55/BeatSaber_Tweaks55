@@ -1,14 +1,19 @@
 ﻿using HarmonyLib;
 using System;
+using System.Reflection;
+using Tweaks55.Util;
 
 namespace Tweaks55.HarmonyPatches {
 
-	[HarmonyPatch(typeof(MainMenuViewController), nameof(MainMenuViewController.HandleMenuButton))]
+	[HarmonyPatch]
 	static class DisableBeatmapEditor {
-		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix(MainMenuViewController.MenuButton menuButton) =>
-			menuButton != MainMenuViewController.MenuButton.BeatmapEditor || !Config.Instance.disableIngameMapEditor;
+		const int BEATMAP_EDITOR = (int)MainMenuViewController.MenuButton.BeatmapEditor;
 
+		[HarmonyPriority(int.MaxValue)]
+		static bool Prefix(int menuButton) =>
+			menuButton != BEATMAP_EDITOR || !Config.Instance.disableIngameMapEditor;
+
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(MainMenuViewController), nameof(MainMenuViewController.HandleMenuButton));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

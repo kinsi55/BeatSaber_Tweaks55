@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using IPA;
-using IPA.Config;
 using IPA.Config.Stores;
 using System;
 using System.Diagnostics;
@@ -52,9 +51,12 @@ namespace Tweaks55 {
 		[OnEnable]
 		public void OnEnable() {
 			enabled = true;
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
 			harmony.PatchAll(Assembly.GetExecutingAssembly());
+			Log.Notice(string.Format("Applied all patches in {0}ms", sw.ElapsedMilliseconds));
 
-			Config.Instance.Changed();
+			Config.Instance.ApplyValues();
 			TweaksFlowCoordinator.Initialize();
 
 			SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;

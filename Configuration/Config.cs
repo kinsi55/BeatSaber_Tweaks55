@@ -49,8 +49,8 @@ namespace Tweaks55 {
 
 
 		public bool enableCustomRumble { get; set; } = false;
-		public float cutRumbleStrength { get; set; } = 0.075f;
-		public float cutRumbleDuration { get; set; } = 0.08f;
+		public virtual float cutRumbleStrength { get; set; } = 0.075f;
+		public virtual float cutRumbleDuration { get; set; } = 0.08f;
 
 		/// <summary>
 		/// This is called whenever BSIPA reads the config from disk (including when file changes are detected).
@@ -62,7 +62,9 @@ namespace Tweaks55 {
 		/// <summary>
 		/// Call this to force BSIPA to update the config file. This is also called by BSIPA if it detects the file was modified.
 		/// </summary>
-		public virtual void Changed() {
+		public virtual void Changed() => ApplyValues();
+
+		public void ApplyValues() {
 			if(!Plugin.enabled)
 				return;
 
@@ -75,6 +77,9 @@ namespace Tweaks55 {
 				bombColor.a = 1;
 
 			MenuLightColor.SetColor(menuLightColor);
+
+			RumbleStuff._ourPreset._duration = cutRumbleDuration;
+			RumbleStuff._ourPreset._strength = cutRumbleStrength;
 		}
 
 		/// <summary>

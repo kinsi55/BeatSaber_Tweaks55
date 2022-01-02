@@ -1,12 +1,14 @@
 ﻿using HarmonyLib;
 using System;
+using System.Reflection;
+using Tweaks55.Util;
 using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(BombNoteController), nameof(BombNoteController.Init))]
+	[HarmonyPatch]
 	static class BombColor {
 		[HarmonyPriority(int.MaxValue)]
-		static void Prefix(BombNoteController __instance) {
+		static void Prefix(MonoBehaviour __instance) {
 			if(Config.Instance.bombColor == Color.black)
 				return;
 
@@ -22,6 +24,7 @@ namespace Tweaks55.HarmonyPatches {
 			c.GetComponent<Renderer>()?.material?.SetColor("_SimpleColor", Config.Instance.bombColor);
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BombNoteController), nameof(BombNoteController.Init));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

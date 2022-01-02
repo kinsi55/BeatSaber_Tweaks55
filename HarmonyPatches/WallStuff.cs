@@ -1,22 +1,23 @@
 ﻿using HarmonyLib;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
+using Tweaks55.Util;
 using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(ObstacleSaberSparkleEffectManager), "Update")]
+	[HarmonyPatch]
 	static class WallClash {
 		[HarmonyPriority(int.MaxValue)]
 		static bool Prefix() => !Config.Instance.disableWallRumbleAndParticles;
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ObstacleSaberSparkleEffectManager), nameof(ObstacleSaberSparkleEffectManager.Update));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
-	[HarmonyPatch(typeof(ParametricBoxFakeGlowController), nameof(ParametricBoxFakeGlowController.Refresh))]
+	[HarmonyPatch]
 	static class WallFakeBloom {
 		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix(ParametricBoxFakeGlowController __instance) {
+		static bool Prefix(MonoBehaviour __instance) {
 			if(!Config.Instance.disableFakeWallBloom)
 				return true;
 
@@ -24,10 +25,11 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ParametricBoxFakeGlowController), nameof(ParametricBoxFakeGlowController.Refresh), assemblyName: "HMRendering");
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
-	[HarmonyPatch(typeof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor))]
+	[HarmonyPatch]
 	static class TransparentWall {
 		[HarmonyPriority(int.MaxValue)]
 		static void Postfix(Transform ____obstacleCore) {
@@ -41,10 +43,11 @@ namespace Tweaks55.HarmonyPatches {
 				____obstacleCore.localScale = Vector3.zero;
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
-	[HarmonyPatch(typeof(ParametricBoxFrameController), nameof(ParametricBoxFrameController.Refresh))]
+	[HarmonyPatch]
 	static class WallOutline {
 		[HarmonyPriority(int.MinValue)]
 		static void Prefix(ParametricBoxFrameController __instance) {
@@ -52,6 +55,7 @@ namespace Tweaks55.HarmonyPatches {
 				__instance.color = Config.Instance.wallOutlineColor;
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ParametricBoxFrameController), nameof(ParametricBoxFrameController.Refresh), assemblyName: "HMRendering");
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

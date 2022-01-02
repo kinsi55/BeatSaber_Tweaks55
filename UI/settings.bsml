@@ -87,8 +87,8 @@
 		<tab tab-name='Graphics' tags='tabs'>
 			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
-					<checkbox-setting apply-on-change="true" value="disableFakeWallBloom" text="Disable 'fake wall bloom'"
-						hover-hint="Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps). Disabling this might require a game restart to function correctly"
+					<checkbox-setting apply-on-change="true" value="disableFakeWallBloom" text="Disable 'Fake' Wall Bloom'"
+						hover-hint="Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps)."
 					/>
 					<checkbox-setting apply-on-change="true" value="disableBeatLines" text="Disable Beat lines"
 						hover-hint="Disables the extremely bright lines which show up on the floor in columns where notes spawn"

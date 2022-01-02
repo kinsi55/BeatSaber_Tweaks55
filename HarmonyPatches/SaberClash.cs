@@ -1,11 +1,14 @@
 ﻿using HarmonyLib;
 using System;
+using System.Reflection;
+using Tweaks55.Util;
+using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(SaberClashEffect), nameof(SaberClashEffect.Start))]
+	[HarmonyPatch]
 	static class SaberClash {
 		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix(SaberClashEffect __instance) {
+		static bool Prefix(MonoBehaviour __instance) {
 			if(!Config.Instance.disableSaberClash)
 				return true;
 
@@ -13,6 +16,7 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(SaberClashEffect), nameof(SaberClashEffect.Start));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

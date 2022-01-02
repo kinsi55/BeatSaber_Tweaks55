@@ -3,11 +3,13 @@ using HMUI;
 using System;
 using System.Collections;
 using System.Linq;
+using System.Reflection;
+using Tweaks55.Util;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(PlayerSettingsPanelController), nameof(PlayerSettingsPanelController.SetLayout))]
+	[HarmonyPatch]
 	static class StaticlightsToggle {
 		static PlayerSettingsPanelController instance;
 		static EnvironmentEffectsFilterPresetDropdown toggle1;
@@ -33,6 +35,7 @@ namespace Tweaks55.HarmonyPatches {
 			Setup(Config.Instance.staticLightsToggle);
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(PlayerSettingsPanelController), nameof(PlayerSettingsPanelController.SetLayout));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 
 		public static void ToggleEffectState(bool setStatic) {

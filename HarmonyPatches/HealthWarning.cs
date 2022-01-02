@@ -1,8 +1,10 @@
 ﻿using HarmonyLib;
 using System;
+using System.Reflection;
+using Tweaks55.Util;
 
 namespace Tweaks55.HarmonyPatches {
-	[HarmonyPatch(typeof(DefaultScenesTransitionsFromInit), nameof(DefaultScenesTransitionsFromInit.TransitionToNextScene))]
+	[HarmonyPatch]
 	static class PatchHealthWarning {
 		[HarmonyPriority(int.MinValue)]
 		static void Prefix(ref bool goStraightToMenu) {
@@ -10,6 +12,7 @@ namespace Tweaks55.HarmonyPatches {
 				goStraightToMenu = true;
 		}
 
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(DefaultScenesTransitionsFromInit), nameof(DefaultScenesTransitionsFromInit.TransitionToNextScene));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
