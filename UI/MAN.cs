@@ -108,4 +108,21 @@ namespace Tweaks55.UI {
 			}).ConfigureAwait(false);
 		}
 	}
+
+	public static class BsmlWrapper {
+		static readonly bool hasBsml = IPA.Loader.PluginManager.GetPluginFromId("BeatSaberMarkupLanguage") != null;
+
+		public static void EnableUI() {
+			void wrap() => TweaksFlowCoordinator.Initialize();
+
+			if(hasBsml)
+				wrap();
+		}
+		public static void DisableUI() {
+			void wrap() => TweaksFlowCoordinator.Deinit();
+
+			if(hasBsml)
+				wrap();
+		}
+	}
 }

@@ -57,7 +57,8 @@ namespace Tweaks55 {
 			Log.Notice(string.Format("Applied all patches in {0}ms", sw.ElapsedMilliseconds));
 
 			Config.Instance.ApplyValues();
-			TweaksFlowCoordinator.Initialize();
+
+			BsmlWrapper.EnableUI();
 
 			SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 		}
@@ -72,7 +73,7 @@ namespace Tweaks55 {
 			enabled = false;
 
 			harmony.UnpatchSelf();
-			TweaksFlowCoordinator.Deinit();
+			BsmlWrapper.DisableUI();
 			GlobalParticles.SetEnabledState(true);
 			MenuLightColor.SetColor(new UnityEngine.Color(0, 0, 0, 0));
 			StaticlightsToggle.Setup(false);

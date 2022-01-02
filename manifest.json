@@ -7,10 +7,10 @@
 	"description": "A collection of various tweaks which by themselves are too simple for their own designated mods ",
 	"gameVersion": "1.19.0",
 	"dependsOn": {
-		"BSIPA": "^4.0.5",
-		"BeatSaberMarkupLanguage": "^1.5.3"
+		"BSIPA": "^4.0.5"
 	},
 	"loadAfter": [
-		"SiraUtil"
+		"SiraUtil",
+		"BeatSaberMarkupLanguage"
 	]
 }
