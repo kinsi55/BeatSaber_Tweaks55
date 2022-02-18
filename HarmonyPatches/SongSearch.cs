@@ -10,7 +10,7 @@ namespace Tweaks55.HarmonyPatches {
 		// Minvalue so other mods can still have a list of all the seperate words
 		[HarmonyPriority(int.MinValue)]
 		static void Prefix(ref string[] searchTexts) {
-			if(Config.Instance.basegameFulltextSearch && searchTexts.Length != 1)
+			if(Config.Instance.basegameFulltextSearch && searchTexts.Length > 1)
 				searchTexts = new string[] { string.Join(" ", searchTexts) };
 		}
 
