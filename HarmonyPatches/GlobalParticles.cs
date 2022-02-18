@@ -2,6 +2,8 @@
 
 namespace Tweaks55.HarmonyPatches {
 	static class GlobalParticles {
+		static bool lastKnownState = true;
+
 		public static void SetEnabledState() {
 			if(Config.Instance == null) {
 				SetEnabledState(true);
@@ -12,8 +14,12 @@ namespace Tweaks55.HarmonyPatches {
 		}
 
 		public static void SetEnabledState(bool enabled) {
-			foreach(var x in Resources.FindObjectsOfTypeAll<ParticleSystem>())
-				if(x.name == "DustPS") x.gameObject.SetActive(enabled);
+			if(!lastKnownState || !enabled) {
+				foreach(var x in Resources.FindObjectsOfTypeAll<ParticleSystem>())
+					if(x.name == "DustPS") x.gameObject.SetActive(enabled);
+			}
+
+			lastKnownState = enabled;
 		}
 	}
 }
