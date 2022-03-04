@@ -49,7 +49,7 @@ namespace Tweaks55.HarmonyPatches {
 
 	[HarmonyPatch]
 	static class WallOutline {
-		[HarmonyPriority(int.MinValue)]
+		[HarmonyPriority(int.MaxValue)]
 		static void Prefix(ParametricBoxFrameController __instance) {
 			if(Config.Instance.wallOutlineColor != Color.white)
 				__instance.color = Config.Instance.wallOutlineColor;

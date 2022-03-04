@@ -59,17 +59,30 @@ namespace Tweaks55.UI {
 
 	[HotReload(RelativePathToLayout = @"./settings.bsml")]
 	[ViewDefinition("Tweaks55.UI.settings.bsml")]
-	class MAN : BSMLAutomaticViewController, INotifyPropertyChanged {
+	class MAN : BSMLAutomaticViewController {
 		Config config = Config.Instance;
 
 
+		void ClearBombColor() {
+			bombColor = Color.black;
+			NotifyPropertyChanged("bombColor");
+		}
 		void ClearMenuLightColor() {
-			config.menuLightColor = new UnityEngine.Color(0, 0, 0, 0);
+			menuLightColor = new Color(0, 0, 0, 0);
 			NotifyPropertyChanged("menuLightColor");
 		}
 		void ClearWallOutlineColor() {
 			config.wallOutlineColor = Color.white;
 			NotifyPropertyChanged("wallOutlineColor");
+		}
+
+		Color bombColor {
+			get => config.bombColor;
+			set => config.bombColor = value;
+		}
+		Color menuLightColor {
+			get => config.menuLightColor;
+			set => config.menuLightColor = value;
 		}
 
 		Color wallOutlineColor {

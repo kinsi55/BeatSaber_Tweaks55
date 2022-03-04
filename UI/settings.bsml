@@ -1,4 +1,4 @@
-﻿<vertical child-control-height='false' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='https://monkeymanboy.github.io/BSML-Docs/ https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
+﻿<vertical child-control-height='false' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='- https://raw.githubusercontent.com/monkeymanboy/BSML-Docs/gh-pages/BSMLSchema.xsd'>
 
 
 	<tab-selector tab-tag='tabs'/>
@@ -12,11 +12,12 @@
 	<horizontal preferred-width='100' preferred-height='58' pad-top='8'>
 		<tab tab-name='Gameplay' tags='tabs'>
 			<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
-				<macro.as-host host='config'>
-					<color-setting apply-on-change="true" value="bombColor" text="Bomb Color"
+				<horizontal>
+					<color-setting apply-on-change="true" bind-value="true" value="bombColor" text="Bomb Color"
 						hover-hint="Changes the color of bombs..."
 					/>
-				</macro.as-host>
+					<button text="Reset" on-click="ClearBombColor"/>
+				</horizontal>
 				<horizontal>
 					<color-setting apply-on-change="true" bind-value="true" value="wallOutlineColor" text="Wall Outline Color"
 						hover-hint="Changes outline color of walls"
@@ -110,11 +111,9 @@
 					/>
 				</macro.as-host>
 				<horizontal>
-					<macro.as-host host='config'>
-						<color-setting apply-on-change="true" bind-value="true" value="menuLightColor" text="Menu lighting color"
-							hover-hint="Changes the color of the menu lighting"
-						/>
-					</macro.as-host>
+					<color-setting apply-on-change="true" bind-value="true" value="menuLightColor" text="Menu lighting color"
+						hover-hint="Changes the color of the menu lighting"
+					/>
 					<button text="Reset" on-click="ClearMenuLightColor"/>
 				</horizontal>
 			</modifier-container>
@@ -125,11 +124,11 @@
 					<checkbox-setting apply-on-change="true" value="enableCustomRumble" text="Enable custom cut Rumble"/>
 					<slider-setting apply-on-change="true" value="cutRumbleStrength" text="Cut Rumble Strength"
 								hover-hint="Default is 1.0"
-								min="0" max="1" increment="0.05"/>
+								min="0" max="1" increment="0.05" show-buttons="true"/>
 
 					<slider-setting apply-on-change="true" value="cutRumbleDuration" text="Cut Rumble Duration"
 									hover-hint="Default is 0.14"
-									min="0" max="0.5" increment="0.01"/>
+									min="0" max="0.5" increment="0.01" show-buttons="true"/>
 				</modifier-container>
 			</macro.as-host>
 		</tab>
