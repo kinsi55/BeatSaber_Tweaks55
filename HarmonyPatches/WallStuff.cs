@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using IPA.Utilities;
 using System;
 using System.Reflection;
 using Tweaks55.Util;
@@ -49,13 +50,36 @@ namespace Tweaks55.HarmonyPatches {
 
 	[HarmonyPatch]
 	static class WallOutline {
+		static FieldAccessor<ObstacleController, StretchableObstacle>.Accessor ObstacleController_StretchableObstacle = FieldAccessor<ObstacleController, StretchableObstacle>.GetAccessor("_stretchableObstacle");
+		static FieldAccessor<StretchableObstacle, ParametricBoxFrameController>.Accessor StretchableObstacle_obstacleFrame = FieldAccessor<StretchableObstacle, ParametricBoxFrameController>.GetAccessor("_obstacleFrame");
+		static FieldAccessor<StretchableObstacle, ParametricBoxFakeGlowController>.Accessor StretchableObstacle_obstacleFakeGlow = FieldAccessor<StretchableObstacle, ParametricBoxFakeGlowController>.GetAccessor("_obstacleFakeGlow");
+
+		static Color defaultColor = Color.white;
+
 		[HarmonyPriority(int.MaxValue)]
-		static void Prefix(ParametricBoxFrameController __instance) {
-			if(Config.Instance.wallOutlineColor != Color.white)
-				__instance.color = Config.Instance.wallOutlineColor;
+		static void Postfix(ObstacleController __result) {
+			/*
+			 * It also deeply pains me that I have to do it this way, it really does.
+			 * This is for compatability with Noodle, the double-refresh could only be saved with a transpiler
+			 */
+			if(Config.Instance.wallOutlineColor != defaultColor) {
+				var a = ObstacleController_StretchableObstacle(ref __result);
+				var b = StretchableObstacle_obstacleFrame(ref a);
+
+				b.color = Config.Instance.wallOutlineColor;
+				b.Refresh();
+
+				var c = StretchableObstacle_obstacleFakeGlow(ref a);
+
+				if(c != null) {
+					c.color = Config.Instance.wallOutlineColor;
+					c.Refresh();
+				}
+			}
 		}
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ParametricBoxFrameController), nameof(ParametricBoxFrameController.Refresh), assemblyName: "HMRendering");
+		//static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ParametricBoxFrameController), nameof(ParametricBoxFrameController.Refresh), assemblyName: "HMRendering");
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), nameof(BeatmapObjectManager.SpawnObstacle));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
