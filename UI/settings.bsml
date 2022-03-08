@@ -35,7 +35,7 @@
 						hover-hint="Disables the Score display you get per cut (115 etc)"
 					/>
 				</macro.as-host>
-				<checkbox-setting text="Make the game lag" interactable="false" active="~isAprilFirst" value="__true"/>
+				<checkbox-setting text="Make the game lag (A lot)" interactable="false" active="~isAprilFirst" value="__true" hover-hint="This feature cannot be disabled today. NO THIS DOESNT ACTUALLY DO ANYTHING DONT GO TO BSMG ASKING FOR HELP"/>
 			</modifier-container>
 		</tab>
 		<tab tab-name='Effects / Particles' tags='tabs'>
