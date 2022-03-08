@@ -7,9 +7,11 @@ using UnityEngine;
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
 	static class BombColor {
+		static Color defaultColor = Color.black;
+
 		[HarmonyPriority(int.MaxValue)]
 		static void Prefix(MonoBehaviour __instance) {
-			if(Config.Instance.bombColor == Color.black)
+			if(Config.Instance.bombColor == defaultColor)
 				return;
 
 			var c = __instance.transform.GetChild(0);
