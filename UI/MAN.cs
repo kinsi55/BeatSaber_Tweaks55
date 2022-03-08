@@ -3,6 +3,7 @@ using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.MenuButtons;
 using BeatSaberMarkupLanguage.ViewControllers;
 using HMUI;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
@@ -62,6 +63,8 @@ namespace Tweaks55.UI {
 	class MAN : BSMLAutomaticViewController {
 		Config config = Config.Instance;
 
+		static bool isAprilFirst = (DateTime.Now.Month == 4) && (DateTime.Now.Day == 1);
+		static bool __true = true;
 
 		void ClearBombColor() {
 			bombColor = Color.black;
