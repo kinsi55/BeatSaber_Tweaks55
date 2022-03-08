@@ -38,7 +38,6 @@ namespace Tweaks55 {
 
 
 		public virtual bool staticLightsToggle { get; set; } = false;
-		public bool disableIngameMapEditor { get; set; } = false;
 		public bool disableRawScore { get; set; } = false;
 		public virtual Color menuLightColor { get; set; } = new Color(0, 0, 0, 0);
 

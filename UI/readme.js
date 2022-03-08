@@ -16,7 +16,8 @@ while(m = tabs.exec(s)) {
 	while(m = options.exec(content)) {
 		const [, tweak, description] = m;
 
-		out += `- \`${tweak}\`: ${description}\n`
+		if(tweak !== "Make the game lag (A lot)")
+			out += `- \`${tweak}\`: ${description}\n`
 	}
 
 	out += "\n";

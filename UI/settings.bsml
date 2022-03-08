@@ -89,7 +89,7 @@
 		<tab tab-name='Graphics' tags='tabs'>
 			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
-					<checkbox-setting apply-on-change="true" value="disableFakeWallBloom" text="Disable 'Fake' Wall Bloom'"
+					<checkbox-setting apply-on-change="true" value="disableFakeWallBloom" text="Disable 'Fake' Wall Bloom"
 						hover-hint="Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps)."
 					/>
 					<checkbox-setting apply-on-change="true" value="disableBeatLines" text="Disable Beat lines"
@@ -103,9 +103,6 @@
 				<macro.as-host host='config'>
 					<checkbox-setting apply-on-change="true" value="staticLightsToggle" text="Add Static lights toggle back"
 						hover-hint="Reverts the two seperate select boxes back to one simple toggle"
-					/>
-					<checkbox-setting apply-on-change="true" value="disableIngameMapEditor" text="Disable Ingame Map Editor"
-						hover-hint="Prevents the ingame map editor from opening when clicking its button"
 					/>
 					<checkbox-setting apply-on-change="true" value="disableRawScore" text="Hide / Disable 'Raw Score' number"
 						hover-hint="Hides the 'Raw' amount of Score in the Score Display, keeping only Rank and 'Accuracy' (E.g. 95%)"

@@ -14,22 +14,22 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 [tweaks]: <>
 ### Gameplay
 
-- `Bomb color`: Changes the color of bombs...
+- `Bomb Color`: Changes the color of bombs...
+- `Wall Outline Color`: Changes outline color of walls
 - `Disable Debris`: Disables Debris
+- `Make Walls Transparent`: Makes walls fully transparent forsenCD
 - `Disable Slice Score`: Disables the Score display you get per cut (115 etc)
 
-### Effects
+### Effects / Particles
 
+- `Disable Cut Particles`: Disables the particles that spawn from cutting blocks
+- `Disable Bomb Explosion`: Disables the Explosion effect / Particles when you touch a bomb
+- `Disable World Particles / Dust`: Disables the world particles / dust floating around
 - `Disable Combo break effect`: Disables the two FC lines on the combo counter 'exploding' when you lose your FC
 - `Disable Wall Clash`: Disables wall rumble and the accompanying particles when touching walls with your saber
 - `Disable Saber Clash`: Disables all effects / rumble from touching sabers together
 - `Disable Floor Burn Marks`: Disables the 'Trails' your sabers leave when they move through the floor
 - `Disable Campaign Goal Fireworks`: Disables the Fireworks effect that happens when you meet a campaign map requirement
-
-### Particles
-
-- `Disable Cut Particles`: Disables the particles that spawn from cutting blocks
-- `Disable World Particles / Dust`: Disables the world particles / dust floating around
 
 ### Quality of Life
 
@@ -40,14 +40,13 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 
 ### Graphics
 
-- `Disable 'fake wall bloom'`: Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps). Disabling this might require a game restart to function correctly
+- `Disable 'Fake' Wall Bloom`: Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps).
 - `Disable Beat lines`: Disables the extremely bright lines which show up on the floor in columns where notes spawn
 
 ### UI
 
 - `Add Static lights toggle back`: Reverts the two seperate select boxes back to one simple toggle
-- `Disable Ingame Editor`: Prevents the ingame map editor from opening when clicking its button
-- `Hide / Disable 'Raw Score' number`: Hides the 'Raw' amount of Score in the Score Display, keeping only Rank and 'Accuacy' (E.g. 95%)
+- `Hide / Disable 'Raw Score' number`: Hides the 'Raw' amount of Score in the Score Display, keeping only Rank and 'Accuracy' (E.g. 95%)
 - `Menu lighting color`: Changes the color of the menu lighting
 
 ### Cut Rumble
