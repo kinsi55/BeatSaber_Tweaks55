@@ -57,13 +57,13 @@ namespace Tweaks55.HarmonyPatches {
 		static Color defaultColor = Color.white;
 
 		[HarmonyPriority(int.MaxValue)]
-		static void Postfix(ObstacleController __result) {
+		static void Prefix(ObstacleController obstacleController) {
 			/*
 			 * It also deeply pains me that I have to do it this way, it really does.
 			 * This is for compatability with Noodle, the double-refresh could only be saved with a transpiler
 			 */
 			if(Config.Instance.wallOutlineColor != defaultColor) {
-				var a = ObstacleController_StretchableObstacle(ref __result);
+				var a = ObstacleController_StretchableObstacle(ref obstacleController);
 				var b = StretchableObstacle_obstacleFrame(ref a);
 
 				b.color = Config.Instance.wallOutlineColor;
@@ -78,8 +78,12 @@ namespace Tweaks55.HarmonyPatches {
 			}
 		}
 
-		//static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ParametricBoxFrameController), nameof(ParametricBoxFrameController.Refresh), assemblyName: "HMRendering");
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), nameof(BeatmapObjectManager.SpawnObstacle));
+		static class WallOutline_1_19 {
+			static void Postfix(ObstacleController __result) => Prefix(__result);
+			static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), "SpawnObstacle");
+			static Exception Cleanup(Exception ex) => null;
+		}
+
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
