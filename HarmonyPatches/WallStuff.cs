@@ -56,6 +56,7 @@ namespace Tweaks55.HarmonyPatches {
 
 		static Color defaultColor = Color.white;
 
+		static bool Prepare() => UnityGame.GameVersion > new AlmostVersion("1.19.1");
 		[HarmonyPriority(int.MaxValue)]
 		static void Prefix(ObstacleController obstacleController) {
 			/*
@@ -77,13 +78,15 @@ namespace Tweaks55.HarmonyPatches {
 				}
 			}
 		}
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), "AddSpawnedObstacleController", BindingFlags.NonPublic | BindingFlags.Instance);
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
+
 
 		static class WallOutline_1_19 {
+			static bool Prepare() => UnityGame.GameVersion <= new AlmostVersion("1.19.1");
 			static void Postfix(ObstacleController __result) => Prefix(__result);
 			static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), "SpawnObstacle");
 			static Exception Cleanup(Exception ex) => null;
 		}
-
-		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
