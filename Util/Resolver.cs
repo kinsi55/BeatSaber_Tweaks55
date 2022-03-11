@@ -5,7 +5,11 @@ using System.Reflection;
 
 namespace Tweaks55.Util {
 	public static class Resolver {
-		public static Dictionary<string, Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies().ToDictionary(x => x.GetName().Name, x => x);
+		public static Dictionary<string, Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies()
+			.Select(assembly => (assembly.GetName().Name, assembly))
+			.GroupBy(x => x.Name)
+			.Select(x => x.First())
+			.ToDictionary(x => x.Name, x => x.assembly);
 
 		public static Assembly GetAssembly(string name) {
 			if(assemblies.TryGetValue(name, out Assembly x))

@@ -1,12 +1,12 @@
 ﻿
 using IPA.Config.Stores;
+using System;
 using System.Runtime.CompilerServices;
 using Tweaks55.HarmonyPatches;
 using UnityEngine;
 
 [assembly: InternalsVisibleTo(GeneratedStore.AssemblyVisibilityTarget)]
 namespace Tweaks55 {
-
 	internal class Config {
 		public static Config Instance { get; set; }
 
@@ -52,40 +52,38 @@ namespace Tweaks55 {
 		public virtual float cutRumbleDuration { get; set; } = 0.08f;
 
 		/// <summary>
-		/// This is called whenever BSIPA reads the config from disk (including when file changes are detected).
-		/// </summary>
-		public virtual void OnReload() {
-			// Do stuff after config is read from disk.
-		}
-
-		/// <summary>
 		/// Call this to force BSIPA to update the config file. This is also called by BSIPA if it detects the file was modified.
 		/// </summary>
 		public virtual void Changed() => ApplyValues();
 
 		public void ApplyValues() {
-			if(!Plugin.enabled)
-				return;
-
-			// Do stuff when the config is changed.
-			StaticlightsToggle.Setup(staticLightsToggle);
-			GlobalParticles.SetEnabledState(!disableGlobalParticles);
-
 			// Initially the default bomb color was 0;0;0;0, ths will correct that fault if it made its way into the config
 			if(bombColor.a == 0f)
 				bombColor.a = 1;
 
-			MenuLightColor.SetColor(menuLightColor);
-
 			RumbleStuff._ourPreset._duration = cutRumbleDuration;
 			RumbleStuff._ourPreset._strength = cutRumbleStrength;
-		}
 
-		/// <summary>
-		/// Call this to have BSIPA copy the values from <paramref name="other"/> into this config.
-		/// </summary>
-		public virtual void CopyFrom(Config other) {
-			// This instance's members populated from other
+			if(!Plugin.enabled)
+				return;
+
+			try {
+				MenuLightColor.SetColor(menuLightColor);
+			} catch(Exception ex) {
+				Plugin.Log.Warn(string.Format("MenuLightColor.SetColor failed: {0}", ex));
+			}
+
+			try {
+				StaticlightsToggle.Setup(staticLightsToggle);
+			} catch(Exception ex) {
+				Plugin.Log.Warn(string.Format("StaticlightsToggle.Setup failed: {0}", ex));
+			}
+
+			try {
+				GlobalParticles.SetEnabledState(!disableGlobalParticles);
+			} catch(Exception ex) {
+				Plugin.Log.Warn(string.Format("GlobalParticles.SetEnabledState failed: {0}", ex));
+			}
 		}
 	}
 }
