@@ -50,13 +50,20 @@ namespace Tweaks55.HarmonyPatches {
 
 	[HarmonyPatch]
 	static class WallOutline {
-		static FieldAccessor<ObstacleController, StretchableObstacle>.Accessor ObstacleController_StretchableObstacle = FieldAccessor<ObstacleController, StretchableObstacle>.GetAccessor("_stretchableObstacle");
-		static FieldAccessor<StretchableObstacle, ParametricBoxFrameController>.Accessor StretchableObstacle_obstacleFrame = FieldAccessor<StretchableObstacle, ParametricBoxFrameController>.GetAccessor("_obstacleFrame");
-		static FieldAccessor<StretchableObstacle, ParametricBoxFakeGlowController>.Accessor StretchableObstacle_obstacleFakeGlow = FieldAccessor<StretchableObstacle, ParametricBoxFakeGlowController>.GetAccessor("_obstacleFakeGlow");
+		static FieldAccessor<ObstacleController, StretchableObstacle>.Accessor ObstacleController_StretchableObstacle;
+		static FieldAccessor<StretchableObstacle, ParametricBoxFrameController>.Accessor StretchableObstacle_obstacleFrame;
+		static FieldAccessor<StretchableObstacle, ParametricBoxFakeGlowController>.Accessor StretchableObstacle_obstacleFakeGlow;
+
+		static bool CreateAccessors() {
+			ObstacleController_StretchableObstacle = FieldAccessor<ObstacleController, StretchableObstacle>.GetAccessor("_stretchableObstacle");
+			StretchableObstacle_obstacleFrame = FieldAccessor<StretchableObstacle, ParametricBoxFrameController>.GetAccessor("_obstacleFrame");
+			StretchableObstacle_obstacleFakeGlow = FieldAccessor<StretchableObstacle, ParametricBoxFakeGlowController>.GetAccessor("_obstacleFakeGlow");
+			return true;
+		}
 
 		static Color defaultColor = Color.white;
 
-		static bool Prepare() => UnityGame.GameVersion > new AlmostVersion("1.19.1");
+		static bool Prepare() => UnityGame.GameVersion > new AlmostVersion("1.19.1") && CreateAccessors();
 		[HarmonyPriority(int.MaxValue)]
 		static void Prefix(ObstacleController obstacleController) {
 			/*
@@ -81,12 +88,12 @@ namespace Tweaks55.HarmonyPatches {
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), "AddSpawnedObstacleController", BindingFlags.NonPublic | BindingFlags.Instance);
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 
-
+		[HarmonyPatch]
 		static class WallOutline_1_19 {
-			static bool Prepare() => UnityGame.GameVersion <= new AlmostVersion("1.19.1");
+			static bool Prepare() => UnityGame.GameVersion <= new AlmostVersion("1.19.1") && CreateAccessors();
 			static void Postfix(ObstacleController __result) => Prefix(__result);
 			static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), "SpawnObstacle");
-			static Exception Cleanup(Exception ex) => null;
+			static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 		}
 	}
 }
