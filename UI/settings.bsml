@@ -116,7 +116,7 @@
 				</horizontal>
 			</modifier-container>
 		</tab>
-		<tab tab-name='Cut Rumble' tags='tabs'>
+		<tab tab-name='Rumble' tags='tabs'>
 			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
 					<checkbox-setting apply-on-change="true" value="enableCustomRumble" text="Enable custom Rumble"/>
