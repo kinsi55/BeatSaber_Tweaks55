@@ -7,23 +7,54 @@ using UnityEngine;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
-	static class RumbleStuff {
-		public static readonly HapticPresetSO _ourPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
+	static class CutRumble {
+		public const float STRENGTH_NORMAL = 1f;
+		public const float DURATION_NORMAL = 0.14f;
+
+		public const float STRENGTH_WEAK = 0.75f;
+		public const float DURATION_WEAK = 0.07f;
+
+		public static readonly HapticPresetSO normalPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
+		public static readonly HapticPresetSO weakPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
 
 		[HarmonyPriority(int.MinValue)]
-		static bool Prefix(ref HapticPresetSO ____rumblePreset) {
+		static bool Prefix(HapticFeedbackController ____hapticFeedbackController, SaberType saberType, NoteCutHapticEffect.Strength strength) {
 			if(!Config.Instance.enableCustomRumble)
 				return true;
 
-			if(_ourPreset._duration == 0f || _ourPreset._strength == 0f)
-				return false;
+			if(strength == NoteCutHapticEffect.Strength.Normal) {
+				if(normalPreset._duration == 0f || normalPreset._strength == 0f)
+					return false;
 
-			____rumblePreset = _ourPreset;
+				____hapticFeedbackController.PlayHapticFeedback(saberType.Node(), normalPreset);
+			} else {
+				if(weakPreset._duration == 0f || weakPreset._strength == 0f)
+					return false;
 
-			return true;
+				____hapticFeedbackController.PlayHapticFeedback(saberType.Node(), weakPreset);
+			}
+
+			return false;
 		}
 
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(NoteCutHapticEffect), nameof(NoteCutHapticEffect.HitNote));
+		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
+	}
+
+	[HarmonyPatch]
+	static class ArcRumble {
+		public const float STRENGTH_NORMAL = 0.75f;
+		public const float DURATION_NORMAL = 0.01f;
+
+		public static readonly HapticPresetSO preset = ScriptableObject.CreateInstance<HapticPresetSO>();
+
+		[HarmonyPriority(int.MinValue)]
+		static void Prefix(ref HapticPresetSO ____hapticPreset) {
+			if(Config.Instance.enableCustomRumble)
+				____hapticPreset = preset;
+		}
+
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(SliderHapticFeedbackInteractionEffect), nameof(SliderHapticFeedbackInteractionEffect.Vibrate));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

@@ -48,8 +48,9 @@ namespace Tweaks55 {
 
 
 		public bool enableCustomRumble { get; set; } = false;
-		public virtual float cutRumbleStrength { get; set; } = 0.075f;
-		public virtual float cutRumbleDuration { get; set; } = 0.08f;
+		public float cutRumbleStrength = 1f;
+		public float rumbleChainElementsStrength = 1f;
+		public float rumbleArcsStrength = 1f;
 
 		/// <summary>
 		/// Call this to force BSIPA to update the config file. This is also called by BSIPA if it detects the file was modified.
@@ -60,9 +61,6 @@ namespace Tweaks55 {
 			// Initially the default bomb color was 0;0;0;0, ths will correct that fault if it made its way into the config
 			if(bombColor.a == 0f)
 				bombColor.a = 1;
-
-			RumbleStuff._ourPreset._duration = cutRumbleDuration;
-			RumbleStuff._ourPreset._strength = cutRumbleStrength;
 
 			if(!Plugin.enabled)
 				return;
@@ -84,6 +82,20 @@ namespace Tweaks55 {
 			} catch(Exception ex) {
 				Plugin.Log.Warn(string.Format("GlobalParticles.SetEnabledState failed: {0}", ex));
 			}
+
+			Rumblez();
+			void Rumblez() {
+				CutRumble.normalPreset._duration = Math.Min(0.2f, CutRumble.DURATION_NORMAL * cutRumbleStrength);
+				CutRumble.normalPreset._strength = CutRumble.STRENGTH_NORMAL * Math.Min(1, (cutRumbleStrength * 1.2f));
+
+				CutRumble.weakPreset._duration = Math.Min(0.2f, CutRumble.DURATION_WEAK * rumbleChainElementsStrength);
+				CutRumble.weakPreset._strength = CutRumble.STRENGTH_WEAK * Math.Min(1, (rumbleChainElementsStrength * 1.2f));
+
+				ArcRumble.preset._duration = Math.Min(0.05f, ArcRumble.DURATION_NORMAL * rumbleArcsStrength);
+				ArcRumble.preset._strength = ArcRumble.STRENGTH_NORMAL * Math.Min(1, rumbleArcsStrength * 1.2f);
+			}
 		}
+
+		public  string PercentageFormatter(float x) => x.ToString("0%");
 	}
 }

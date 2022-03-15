@@ -119,14 +119,13 @@
 		<tab tab-name='Cut Rumble' tags='tabs'>
 			<macro.as-host host='config'>
 				<modifier-container child-expand-width='true' horizontal-fit='PreferredSize'>
-					<checkbox-setting apply-on-change="true" value="enableCustomRumble" text="Enable custom cut Rumble"/>
-					<slider-setting apply-on-change="true" value="cutRumbleStrength" text="Cut Rumble Strength"
-								hover-hint="Default is 1.0"
-								min="0" max="1" increment="0.05" show-buttons="true"/>
-
-					<slider-setting apply-on-change="true" value="cutRumbleDuration" text="Cut Rumble Duration"
-									hover-hint="Default is 0.14"
-									min="0" max="0.5" increment="0.01" show-buttons="true"/>
+					<checkbox-setting apply-on-change="true" value="enableCustomRumble" text="Enable custom Rumble"/>
+					<slider-setting apply-on-change="true" value="cutRumbleStrength" text="Normal Cut Rumble"
+								min="0" max="1" increment="0.05" show-buttons="true" formatter="PercentageFormatter"/>
+					<slider-setting apply-on-change="true" value="rumbleChainElementsStrength" text="Chain Element Cut Rumble"
+								min="0" max="1.5" increment="0.05" show-buttons="true" formatter="PercentageFormatter"/>
+					<slider-setting apply-on-change="true" value="rumbleArcsStrength" text="Arcs/Guides Rumble"
+								min="0" max="2" increment="0.05" show-buttons="true" formatter="PercentageFormatter"/>
 				</modifier-container>
 			</macro.as-host>
 		</tab>
