@@ -49,8 +49,10 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 - `Hide / Disable 'Raw Score' number`: Hides the 'Raw' amount of Score in the Score Display, keeping only Rank and 'Accuracy' (E.g. 95%)
 - `Menu lighting color`: Changes the color of the menu lighting
 
-### Cut Rumble
+### Rumble
 
-- `Cut Rumble Strength`: Default is 1.0
-- `Cut Rumble Duration`: Default is 0.14
+- `Enable Rumble Overrides`: Enables / Disables the overrides
+- `Normal Cut Rumble`: Haptic feedback strength for normal cuts
+- `Chain Element Cut Rumble`: Haptic feedback strength for chain elements
+- `Arcs/Guides Rumble`: Haptic feedback strength while in Arcs
 
