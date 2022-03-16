@@ -48,6 +48,10 @@ namespace Tweaks55.HarmonyPatches {
 
 		public static readonly HapticPresetSO preset = ScriptableObject.CreateInstance<HapticPresetSO>();
 
+		static void Prepare() {
+			preset._continuous = true;
+		}
+
 		[HarmonyPriority(int.MinValue)]
 		static void Prefix(ref HapticPresetSO ____hapticPreset) {
 			if(Config.Instance.enableCustomRumble)
