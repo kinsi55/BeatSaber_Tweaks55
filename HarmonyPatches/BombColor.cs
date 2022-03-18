@@ -16,7 +16,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(__instance.name[0] == 'C')
 				return;
 
-			__instance.name = "C";
+			__instance.name = "ColoredBombNote (Clone)";
 
 			if(Config.Instance.bombColor == defaultColor)
 				return;
