@@ -9,8 +9,15 @@ namespace Tweaks55.HarmonyPatches {
 	static class BombColor {
 		static Color defaultColor = Color.black;
 
+		static readonly int _SimpleColor = Shader.PropertyToID("_SimpleColor");
+
 		[HarmonyPriority(int.MaxValue)]
 		static void Prefix(MonoBehaviour __instance) {
+			if(__instance.name[0] == 'C')
+				return;
+
+			__instance.name = "C";
+
 			if(Config.Instance.bombColor == defaultColor)
 				return;
 
@@ -23,7 +30,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(c.childCount != 0)
 				c = c.GetChild(0);
 
-			c.GetComponent<Renderer>()?.material?.SetColor("_SimpleColor", Config.Instance.bombColor);
+			c.GetComponent<Renderer>()?.material?.SetColor(_SimpleColor, Config.Instance.bombColor);
 		}
 
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BombNoteController), nameof(BombNoteController.Init));
