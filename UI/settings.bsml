@@ -95,6 +95,9 @@
 					<checkbox-setting apply-on-change="true" value="disableBeatLines" text="Disable Beat lines"
 						hover-hint="Disables the extremely bright lines which show up on the floor in columns where notes spawn"
 					/>
+					<checkbox-setting apply-on-change="true" value="disableCameraNoise" text="Disable Camera Noise / Dither"
+						hover-hint="Beat Saber applies random noise / dithering to make banding of color gradients less obvious. This can cause some visual Artifacts and decrease streaming / recording quality."
+					/>
 				</modifier-container>
 			</macro.as-host>
 		</tab>

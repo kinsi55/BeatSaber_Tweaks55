@@ -35,6 +35,7 @@ namespace Tweaks55 {
 
 		public bool disableFakeWallBloom = false;
 		public bool disableBeatLines = false;
+		public bool disableCameraNoise = false;
 
 
 		public virtual bool staticLightsToggle { get; set; } = false;
