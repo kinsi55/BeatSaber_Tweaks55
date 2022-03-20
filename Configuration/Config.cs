@@ -8,37 +8,37 @@ using UnityEngine;
 [assembly: InternalsVisibleTo(GeneratedStore.AssemblyVisibilityTarget)]
 namespace Tweaks55 {
 	internal class Config {
-		public static Config Instance { get; set; }
+		public static Config Instance;
 
 		public Color bombColor = Color.black;
-		public Color wallOutlineColor { get; set; } = Color.white;
-		public bool disableDebris { get; set; } = false;
-		public bool disableSliceScore { get; set; } = false;
-		public bool transparentWalls { get; set; } = false;
+		public Color wallOutlineColor = Color.white;
+		public bool disableDebris = false;
+		public bool disableSliceScore = false;
+		public bool transparentWalls = false;
 
-		public bool disableComboBreakEffect { get; set; } = false;
-		public bool disableWallRumbleAndParticles { get; set; } = false;
-		public bool disableSaberClash { get; set; } = false;
-		public bool disableBurnMarks { get; set; } = false;
-		public bool disableCampaignFireworks { get; set; } = false;
+		public bool disableComboBreakEffect = false;
+		public bool disableWallRumbleAndParticles = false;
+		public bool disableSaberClash = false;
+		public bool disableBurnMarks = false;
+		public bool disableCampaignFireworks = false;
 
 
-		public bool disableCutParticles { get; set; } = false;
+		public bool disableCutParticles = false;
 		public virtual bool disableGlobalParticles { get; set; } = false;
-		public virtual bool disableBombExplosion { get; set; } = false;
+		public bool disableBombExplosion = false;
 
 
-		public bool disableHealthWarning { get; set; } = false;
-		public bool basegameFulltextSearch { get; set; } = false;
-		public bool keepGameSettingsOnCancel { get; set; } = false;
-		public float scrollSpeedMultiplier { get; set; } = 1f;
+		public bool disableHealthWarning = false;
+		public bool basegameFulltextSearch = false;
+		public bool keepGameSettingsOnCancel = false;
+		public float scrollSpeedMultiplier = 1f;
 
-		public bool disableFakeWallBloom { get; set; } = false;
-		public bool disableBeatLines { get; set; } = false;
+		public bool disableFakeWallBloom = false;
+		public bool disableBeatLines = false;
 
 
 		public virtual bool staticLightsToggle { get; set; } = false;
-		public bool disableRawScore { get; set; } = false;
+		public bool disableRawScore = false;
 		public virtual Color menuLightColor { get; set; } = new Color(0, 0, 0, 0);
 
 
@@ -47,7 +47,7 @@ namespace Tweaks55 {
 
 
 
-		public bool enableCustomRumble { get; set; } = false;
+		public bool enableCustomRumble = false;
 		public float cutRumbleStrength = 1f;
 		public float rumbleChainElementsStrength = 1f;
 		public float rumbleArcsStrength = 1f;
