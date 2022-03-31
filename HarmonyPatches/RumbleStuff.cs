@@ -18,20 +18,20 @@ namespace Tweaks55.HarmonyPatches {
 		public static readonly HapticPresetSO weakPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
 
 		[HarmonyPriority(int.MinValue)]
-		static bool Prefix(HapticFeedbackController ____hapticFeedbackController, SaberType saberType, NoteCutHapticEffect.Strength strength) {
+		static bool Prefix(HapticFeedbackController ____hapticFeedbackController, SaberType saberType, NoteCutHapticEffect.Type type) {
 			if(!Config.Instance.enableCustomRumble)
 				return true;
 
-			if(strength == NoteCutHapticEffect.Strength.Normal) {
-				if(normalPreset._duration == 0f || normalPreset._strength == 0f)
-					return false;
-
-				____hapticFeedbackController.PlayHapticFeedback(saberType.Node(), normalPreset);
-			} else {
+			if(type == NoteCutHapticEffect.Type.ShortWeak) {
 				if(weakPreset._duration == 0f || weakPreset._strength == 0f)
 					return false;
 
 				____hapticFeedbackController.PlayHapticFeedback(saberType.Node(), weakPreset);
+			} else {
+				if(normalPreset._duration == 0f || normalPreset._strength == 0f)
+					return false;
+
+				____hapticFeedbackController.PlayHapticFeedback(saberType.Node(), normalPreset);
 			}
 
 			return false;
