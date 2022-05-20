@@ -63,6 +63,8 @@ namespace Tweaks55 {
 			if(bombColor.a == 0f)
 				bombColor.a = 1;
 
+			wallOutlineColor.a = 1;
+
 			if(!Plugin.enabled)
 				return;
 
@@ -85,10 +87,10 @@ namespace Tweaks55 {
 			}
 
 			WallOutline.realBorderColor = wallOutlineColor;
-			WallOutline.realBorderColor.a = Mathf.Max(wallOutlineColor.r, wallOutlineColor.g, wallOutlineColor.b) / 3f;
+			WallOutline.realBorderColor.a = Mathf.Max(wallOutlineColor.r, wallOutlineColor.g, wallOutlineColor.b) / 6f;
 
 			WallOutline.fakeBorderColor = wallOutlineColor;
-			WallOutline.fakeBorderColor.a = 0.4f + (WallOutline.realBorderColor.a * 1.5f);
+			WallOutline.fakeBorderColor.a = 0.6f + (WallOutline.realBorderColor.a * 2f);
 
 			Rumblez();
 			void Rumblez() {
@@ -97,9 +99,10 @@ namespace Tweaks55 {
 
 				CutRumble.weakPreset._duration = Math.Min(0.2f, CutRumble.DURATION_WEAK * rumbleChainElementsStrength);
 				CutRumble.weakPreset._strength = CutRumble.STRENGTH_WEAK * Math.Min(1, (rumbleChainElementsStrength * 1.2f));
-
+#if !PRE_1_20
 				ArcRumble.preset._duration = Math.Min(0.05f, ArcRumble.DURATION_NORMAL * rumbleArcsStrength);
 				ArcRumble.preset._strength = ArcRumble.STRENGTH_NORMAL * Math.Min(1, rumbleArcsStrength * 1.2f);
+#endif
 			}
 		}
 

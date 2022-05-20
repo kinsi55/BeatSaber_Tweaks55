@@ -23,26 +23,30 @@ namespace Tweaks55.HarmonyPatches {
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
-	// I cant just modify the prefab because for whatever reason, enabling the wall border in the prefab still has it off in the spawned wall
 	[HarmonyPatch]
 	static class DisableFakeWallBloom {
-		static FieldAccessor<ConditionalActivation, bool>.Accessor ConditionalActivation_activateOnFalse = 
+		static readonly FieldAccessor<ConditionalActivation, bool>.Accessor ConditionalActivation_activateOnFalse = 
 			FieldAccessor<ConditionalActivation, bool>.GetAccessor("_activateOnFalse");
+
+		static readonly FieldAccessor<ConditionalActivation, BoolSO>.Accessor ConditionalActivation_value =
+			FieldAccessor<ConditionalActivation, BoolSO>.GetAccessor("_value");
 
 		[HarmonyPriority(int.MaxValue)]
 		static void Prefix(ObstacleController ____obstaclePrefab) {
-			var x = ____obstaclePrefab.GetComponentInChildren<ParametricBoxFakeGlowController>()?
+			var x = ____obstaclePrefab.GetComponentInChildren<ParametricBoxFrameController>()?
+				.GetComponent<ConditionalActivation>();
+
+			var bloomIsOn = ConditionalActivation_value(ref x);
+
+			if(x != null)
+				ConditionalActivation_activateOnFalse(ref x) = !(!Config.Instance.disableFakeWallBloom || bloomIsOn);
+
+
+			x = ____obstaclePrefab.GetComponentInChildren<ParametricBoxFakeGlowController>()?
 				.GetComponent<ConditionalActivation>();
 
 			if(x != null)
-				ConditionalActivation_activateOnFalse(ref x) = !Config.Instance.disableFakeWallBloom;
-
-
-			x = ____obstaclePrefab.GetComponentInChildren<ParametricBoxFrameController>()?
-				.GetComponent<ConditionalActivation>();
-
-			if(x != null)
-				ConditionalActivation_activateOnFalse(ref x) = Config.Instance.disableFakeWallBloom;
+				ConditionalActivation_activateOnFalse(ref x) = !(!Config.Instance.disableFakeWallBloom != !bloomIsOn) || bloomIsOn;
 		}
 
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectsInstaller), "InstallBindings");
