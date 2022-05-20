@@ -2,6 +2,7 @@
 using IPA.Utilities;
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using Tweaks55.Util;
 using UnityEngine;
 
@@ -15,18 +16,29 @@ namespace Tweaks55.HarmonyPatches {
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
+	// I cant just modify the prefab because for whatever reason, enabling the wall border in the prefab still has it off in the spawned wall
 	[HarmonyPatch]
-	static class WallFakeBloom {
-		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix(MonoBehaviour __instance) {
-			if(!Config.Instance.disableFakeWallBloom)
-				return true;
+	static class DisableFakeWallBloom {
+		static ConditionalWeakTable<MonoBehaviour, MonoBehaviour> processedWalls = new ConditionalWeakTable<MonoBehaviour, MonoBehaviour>();
 
-			__instance.enabled = false;
-			return false;
+		[HarmonyPriority(int.MaxValue)]
+		static void Prefix(MonoBehaviour ____obstacleFrame, MonoBehaviour ____obstacleFakeGlow) {
+			if(!Config.Instance.disableFakeWallBloom)
+				return;
+
+			if(processedWalls.TryGetValue(____obstacleFrame, out var _))
+				return;
+
+			if(____obstacleFrame != null)
+				____obstacleFrame.gameObject.SetActive(true);
+
+			if(____obstacleFakeGlow != null)
+				____obstacleFakeGlow.gameObject.SetActive(false);
+
+			processedWalls.Add(____obstacleFrame, ____obstacleFrame);
 		}
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ParametricBoxFakeGlowController), nameof(ParametricBoxFakeGlowController.Refresh), assemblyName: "HMRendering");
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
