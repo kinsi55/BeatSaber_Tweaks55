@@ -87,7 +87,7 @@ namespace Tweaks55 {
 			}
 
 			WallOutline.realBorderColor = wallOutlineColor;
-			WallOutline.realBorderColor.a = Mathf.Max(wallOutlineColor.r, wallOutlineColor.g, wallOutlineColor.b) / 6f;
+			WallOutline.realBorderColor.a = Mathf.Max(wallOutlineColor.r, wallOutlineColor.g, wallOutlineColor.b) / 5f;
 
 			WallOutline.fakeBorderColor = wallOutlineColor;
 			WallOutline.fakeBorderColor.a = 0.6f + (WallOutline.realBorderColor.a * 2f);
