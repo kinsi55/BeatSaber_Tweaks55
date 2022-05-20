@@ -85,50 +85,56 @@ namespace Tweaks55.HarmonyPatches {
 
 	[HarmonyPatch]
 	static class WallOutline {
-		static FieldAccessor<ObstacleController, StretchableObstacle>.Accessor ObstacleController_StretchableObstacle;
-		static FieldAccessor<StretchableObstacle, ParametricBoxFrameController>.Accessor StretchableObstacle_obstacleFrame;
-		static FieldAccessor<StretchableObstacle, ParametricBoxFakeGlowController>.Accessor StretchableObstacle_obstacleFakeGlow;
+		static readonly Color defaultColor = Color.white;
 
-		static bool CreateAccessors() {
-			ObstacleController_StretchableObstacle = FieldAccessor<ObstacleController, StretchableObstacle>.GetAccessor("_stretchableObstacle");
-			StretchableObstacle_obstacleFrame = FieldAccessor<StretchableObstacle, ParametricBoxFrameController>.GetAccessor("_obstacleFrame");
-			StretchableObstacle_obstacleFakeGlow = FieldAccessor<StretchableObstacle, ParametricBoxFakeGlowController>.GetAccessor("_obstacleFakeGlow");
-			return true;
+		static byte colorParam = 0;
+
+		static bool Prepare(MethodBase __originalMethod) {
+			colorParam = (byte)(1 + Array.FindIndex(TargetMethod().GetParameters(), x => x.Name == "color" && x.ParameterType == typeof(Color)));
+
+			return colorParam != 0;
 		}
 
-		static Color defaultColor = Color.white;
+		internal static Color realBorderColor;
+		internal static Color fakeBorderColor;
 
-		static bool Prepare() => UnityGame.GameVersion > new AlmostVersion("1.19.1") && CreateAccessors();
+		static Color GetRealBorderColor(Color originalColor) {
+			if(Config.Instance.wallOutlineColor == defaultColor)
+				return originalColor;
+
+			return realBorderColor;
+		}
+
+		static Color GetFakeBorderColor(Color originalColor) {
+			if(Config.Instance.wallOutlineColor == defaultColor)
+				return originalColor;
+
+			return fakeBorderColor;
+		}
+
 		[HarmonyPriority(int.MaxValue)]
-		static void Prefix(ObstacleController obstacleController) {
-			/*
-			 * It also deeply pains me that I have to do it this way, it really does.
-			 * This is for compatability with Noodle, the double-refresh could only be saved with a transpiler
-			 */
-			if(Config.Instance.wallOutlineColor != defaultColor) {
-				var a = ObstacleController_StretchableObstacle(ref obstacleController);
-				var b = StretchableObstacle_obstacleFrame(ref a);
+		static IEnumerable Transpiler(IEnumerable<CodeInstruction> instructions) {
+			var c = new CodeMatcher(instructions);
 
-				b.color = Config.Instance.wallOutlineColor;
-				b.Refresh();
+			c.MatchForward(true,
+				new CodeMatch(OpCodes.Ldfld, AccessTools.Field(typeof(StretchableObstacle), "_obstacleFrame")),
+				new CodeMatch(OpCodes.Ldarg_S, colorParam)
+			)
+			.ThrowIfInvalid("_obstacleFrame color setter not found")
+			.Advance(1)
+			.InsertAndAdvance(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(WallOutline), nameof(GetRealBorderColor))))
 
-				var c = StretchableObstacle_obstacleFakeGlow(ref a);
+			.MatchForward(true,
+				new CodeMatch(OpCodes.Ldfld, operand: AccessTools.Field(typeof(StretchableObstacle), "_obstacleFakeGlow")),
+				new CodeMatch(OpCodes.Ldarg_S, colorParam)
+			)
+			.ThrowIfInvalid("_obstacleFakeGlow color setter not found")
+			.Advance(1)
+			.InsertAndAdvance(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(WallOutline), nameof(GetFakeBorderColor))));
 
-				if(c != null) {
-					c.color = Config.Instance.wallOutlineColor;
-					c.Refresh();
-				}
-			}
+			return c.InstructionEnumeration();
 		}
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), "AddSpawnedObstacleController", BindingFlags.NonPublic | BindingFlags.Instance);
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
-
-		[HarmonyPatch]
-		static class WallOutline_1_19 {
-			static bool Prepare() => UnityGame.GameVersion <= new AlmostVersion("1.19.1") && CreateAccessors();
-			static void Postfix(ObstacleController __result) => Prefix(__result);
-			static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectManager), "SpawnObstacle");
-			static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
-		}
 	}
 }

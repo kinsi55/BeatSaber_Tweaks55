@@ -89,17 +89,8 @@ namespace Tweaks55.UI {
 		}
 
 		Color wallOutlineColor {
-			get {
-				var x = config.wallOutlineColor;
-				x.a = 1f;
-				return x;
-			}
-			set {
-				var lum = Mathf.Max(value.r, value.g, value.b);
-
-				config.wallOutlineColor = new Color(value.r, value.g, value.b, lum / 3f);
-				NotifyPropertyChanged("wallOutlineColor");
-			}
+			get => config.wallOutlineColor;
+			set => config.wallOutlineColor = value;
 		}
 
 

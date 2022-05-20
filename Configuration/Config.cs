@@ -84,6 +84,12 @@ namespace Tweaks55 {
 				Plugin.Log.Warn(string.Format("GlobalParticles.SetEnabledState failed: {0}", ex));
 			}
 
+			WallOutline.realBorderColor = wallOutlineColor;
+			WallOutline.realBorderColor.a = Mathf.Max(wallOutlineColor.r, wallOutlineColor.g, wallOutlineColor.b) / 3f;
+
+			WallOutline.fakeBorderColor = wallOutlineColor;
+			WallOutline.fakeBorderColor.a = 0.4f + (WallOutline.realBorderColor.a * 1.5f);
+
 			Rumblez();
 			void Rumblez() {
 				CutRumble.normalPreset._duration = Math.Min(0.2f, CutRumble.DURATION_NORMAL * cutRumbleStrength);

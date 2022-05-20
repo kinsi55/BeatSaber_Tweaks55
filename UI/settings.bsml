@@ -19,8 +19,8 @@
 					<button text="Reset" on-click="ClearBombColor"/>
 				</horizontal>
 				<horizontal>
-					<color-setting apply-on-change="true" bind-value="true" value="wallOutlineColor" text="Wall Outline Color"
-						hover-hint="Changes outline color of walls"
+					<color-setting apply-on-change="true" bind-value="true" value="wallOutlineColor" text="Wall Outline Color*"
+						hover-hint="Changes outline color of walls. *: If you have Bloom off in the game settings, this only properly works if you also have 'Disable Fake Wall Bloom' in the Graphics Tab"
 					/>
 					<button text="Reset" on-click="ClearWallOutlineColor"/>
 				</horizontal>
