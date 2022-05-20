@@ -4,7 +4,7 @@
 	"author": "Kinsi55",
 	"version": "0.3.6",
 	"description": "A collection of various tweaks which by themselves are too simple for their own designated mods",
-	"gameVersion": "1.21.0",
+	"gameVersion": "1.22.1",
 	"dependsOn": {
 		"BSIPA": "^4.0.5"
 	},

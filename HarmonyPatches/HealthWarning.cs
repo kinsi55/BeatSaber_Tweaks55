@@ -7,8 +7,8 @@ namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
 	static class PatchHealthWarning {
 		[HarmonyPriority(int.MinValue)]
-		static void Prefix(ref bool goStraightToMenu) {
-			if(Config.Instance.disableHealthWarning)
+		static void Prefix(ref bool goStraightToMenu, bool goStraightToEditor) {
+			if(Config.Instance.disableHealthWarning && !goStraightToEditor)
 				goStraightToMenu = true;
 		}
 
