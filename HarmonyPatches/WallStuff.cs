@@ -1,8 +1,10 @@
 ﻿using HarmonyLib;
 using IPA.Utilities;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Reflection.Emit;
 using Tweaks55.Util;
 using UnityEngine;
 
@@ -24,26 +26,26 @@ namespace Tweaks55.HarmonyPatches {
 	// I cant just modify the prefab because for whatever reason, enabling the wall border in the prefab still has it off in the spawned wall
 	[HarmonyPatch]
 	static class DisableFakeWallBloom {
-		static ConditionalWeakTable<MonoBehaviour, MonoBehaviour> processedWalls = new ConditionalWeakTable<MonoBehaviour, MonoBehaviour>();
+		static FieldAccessor<ConditionalActivation, bool>.Accessor ConditionalActivation_activateOnFalse = 
+			FieldAccessor<ConditionalActivation, bool>.GetAccessor("_activateOnFalse");
 
 		[HarmonyPriority(int.MaxValue)]
-		static void Prefix(MonoBehaviour ____obstacleFrame, MonoBehaviour ____obstacleFakeGlow) {
-			if(!Config.Instance.disableFakeWallBloom)
-				return;
+		static void Prefix(ObstacleController ____obstaclePrefab) {
+			var x = ____obstaclePrefab.GetComponentInChildren<ParametricBoxFakeGlowController>()?
+				.GetComponent<ConditionalActivation>();
 
-			if(processedWalls.TryGetValue(____obstacleFrame, out var _))
-				return;
+			if(x != null)
+				ConditionalActivation_activateOnFalse(ref x) = !Config.Instance.disableFakeWallBloom;
 
-			if(____obstacleFrame != null)
-				____obstacleFrame.gameObject.SetActive(true);
 
-			if(____obstacleFakeGlow != null)
-				____obstacleFakeGlow.gameObject.SetActive(false);
+			x = ____obstaclePrefab.GetComponentInChildren<ParametricBoxFrameController>()?
+				.GetComponent<ConditionalActivation>();
 
-			processedWalls.Add(____obstacleFrame, ____obstacleFrame);
+			if(x != null)
+				ConditionalActivation_activateOnFalse(ref x) = Config.Instance.disableFakeWallBloom;
 		}
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor));
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectsInstaller), "InstallBindings");
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
