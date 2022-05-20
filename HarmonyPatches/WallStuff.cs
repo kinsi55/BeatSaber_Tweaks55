@@ -44,19 +44,35 @@ namespace Tweaks55.HarmonyPatches {
 
 	[HarmonyPatch]
 	static class TransparentWall {
+		static FieldAccessor<ObstacleController, GameObject[]>.Accessor ObstacleController_visualWrappers = FieldAccessor<ObstacleController, GameObject[]>.GetAccessor("_visualWrappers");
+
+		static GameObject[] visualWrappersOriginal = null;
+
 		[HarmonyPriority(int.MaxValue)]
-		static void Postfix(Transform ____obstacleCore) {
-			/*
-			 * It deeply pains me that this is the simplest way to disable it
-			 * because disabling the gameobject does not work for some reason.
-			 * 
-			 * I'd need a transpiler to do better
-			 */
-			if(Config.Instance.transparentWalls && ____obstacleCore != null)
-				____obstacleCore.localScale = Vector3.zero;
+		static void Postfix(ObstacleController ____obstaclePrefab) {
+			if(visualWrappersOriginal != null) {
+				if(Config.Instance.transparentWalls)
+					return;
+
+				ObstacleController_visualWrappers(ref ____obstaclePrefab) = visualWrappersOriginal;
+				visualWrappersOriginal = null;
+				return;
+			}
+
+			if(!Config.Instance.transparentWalls)
+				return;
+
+			visualWrappersOriginal = ObstacleController_visualWrappers(ref ____obstaclePrefab);
+
+			if(visualWrappersOriginal.Length != 2)
+				return;
+
+			visualWrappersOriginal[0].SetActive(false);
+
+			ObstacleController_visualWrappers(ref ____obstaclePrefab) = new[] { visualWrappersOriginal[1] };
 		}
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor));
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectsInstaller), "InstallBindings");
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
