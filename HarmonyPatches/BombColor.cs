@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using IPA.Utilities;
 using System;
 using System.Reflection;
 using Tweaks55.Util;
@@ -7,33 +8,28 @@ using UnityEngine;
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
 	static class BombColor {
-		static Color defaultColor = Color.black;
-
 		static readonly int _SimpleColor = Shader.PropertyToID("_SimpleColor");
 
+		static readonly FieldAccessor<ConditionalMaterialSwitcher, Material>.Accessor BombNoteController_material0
+			= FieldAccessor<ConditionalMaterialSwitcher, Material>.GetAccessor("_material0");
+
+		static readonly FieldAccessor<ConditionalMaterialSwitcher, Material>.Accessor BombNoteController_material1
+			= FieldAccessor<ConditionalMaterialSwitcher, Material>.GetAccessor("_material1");
+
+
 		[HarmonyPriority(int.MaxValue)]
-		static void Prefix(MonoBehaviour __instance) {
-			if(__instance.name[0] == 'C')
+		static void Postfix(BombNoteController ____bombNotePrefab) {
+			var cms = ____bombNotePrefab
+				.GetComponentInChildren<ConditionalMaterialSwitcher>();
+
+			if(cms == null)
 				return;
 
-			__instance.name = "ColoredBombNote (Clone)";
-
-			if(Config.Instance.bombColor == defaultColor)
-				return;
-
-			var c = __instance.transform.GetChild(0);
-
-			if(c == null)
-				return;
-
-			// If CustomNotes "HMD Only" is active, there will be another nested child (The HMD bomb), which we should apply the color to instead
-			if(c.childCount != 0)
-				c = c.GetChild(0);
-
-			c.GetComponent<Renderer>()?.material?.SetColor(_SimpleColor, Config.Instance.bombColor);
+			BombNoteController_material0(ref cms)?.SetColor(_SimpleColor, Config.Instance.bombColor);
+			BombNoteController_material1(ref cms)?.SetColor(_SimpleColor, Config.Instance.bombColor);
 		}
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BombNoteController), nameof(BombNoteController.Init));
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectsInstaller), "InstallBindings");
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
