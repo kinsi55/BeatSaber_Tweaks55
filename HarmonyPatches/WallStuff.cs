@@ -10,9 +10,14 @@ namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
 	static class WallClash {
 		[HarmonyPriority(int.MaxValue)]
-		static bool Prefix() => !Config.Instance.disableWallRumbleAndParticles;
+		static void Postfix(MonoBehaviour __instance) {
+			if(!Config.Instance.disableSaberClash)
+				return;
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ObstacleSaberSparkleEffectManager), nameof(ObstacleSaberSparkleEffectManager.Update));
+			__instance.enabled = false;
+		}
+
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ObstacleSaberSparkleEffectManager), nameof(ObstacleSaberSparkleEffectManager.Start));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
