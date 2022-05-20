@@ -36,17 +36,18 @@ namespace Tweaks55.HarmonyPatches {
 			var x = ____obstaclePrefab.GetComponentInChildren<ParametricBoxFrameController>()?
 				.GetComponent<ConditionalActivation>();
 
-			var bloomIsOn = ConditionalActivation_value(ref x);
-
 			if(x != null)
-				ConditionalActivation_activateOnFalse(ref x) = !(!Config.Instance.disableFakeWallBloom || bloomIsOn);
+				ConditionalActivation_activateOnFalse(ref x) = !(!Config.Instance.disableFakeWallBloom || ConditionalActivation_value(ref x));
 
 
 			x = ____obstaclePrefab.GetComponentInChildren<ParametricBoxFakeGlowController>()?
 				.GetComponent<ConditionalActivation>();
 
-			if(x != null)
+			if(x != null) {
+				var bloomIsOn = ConditionalActivation_value(ref x);
+
 				ConditionalActivation_activateOnFalse(ref x) = !(!Config.Instance.disableFakeWallBloom != !bloomIsOn) || bloomIsOn;
+			}
 		}
 
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectsInstaller), "InstallBindings");
