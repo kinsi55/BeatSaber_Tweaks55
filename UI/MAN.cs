@@ -82,7 +82,7 @@ namespace Tweaks55.UI {
 
 		Color bombColor {
 			get => config.bombColor;
-			set => config.bombColor = value;
+			set => config.bombColor = value.ColorWithAlpha(1);
 		}
 		Color menuLightColor {
 			get => config.menuLightColor;
@@ -91,7 +91,7 @@ namespace Tweaks55.UI {
 
 		Color wallOutlineColor {
 			get => config.wallBorderColor;
-			set => config.wallBorderColor = value;
+			set => config.wallBorderColor = value.ColorWithAlpha(1);
 		}
 
 
