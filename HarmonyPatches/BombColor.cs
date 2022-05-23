@@ -8,6 +8,8 @@ using UnityEngine;
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
 	static class BombColor {
+		internal static readonly Color defaultColor = Color.black.ColorWithAlpha(0);
+
 		static readonly int _SimpleColor = Shader.PropertyToID("_SimpleColor");
 
 		static readonly FieldAccessor<ConditionalMaterialSwitcher, Material>.Accessor BombNoteController_material0

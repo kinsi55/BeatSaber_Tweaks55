@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
+using Tweaks55.HarmonyPatches;
 using UnityEngine;
 
 namespace Tweaks55.UI {
@@ -67,7 +68,7 @@ namespace Tweaks55.UI {
 		static bool __true = true;
 
 		void ClearBombColor() {
-			bombColor = Color.black;
+			bombColor = BombColor.defaultColor;
 			NotifyPropertyChanged("bombColor");
 		}
 		void ClearMenuLightColor() {
@@ -75,7 +76,7 @@ namespace Tweaks55.UI {
 			NotifyPropertyChanged("menuLightColor");
 		}
 		void ClearWallOutlineColor() {
-			config.wallOutlineColor = Color.white;
+			config.wallBorderColor = WallOutline.defaultColor;
 			NotifyPropertyChanged("wallOutlineColor");
 		}
 
@@ -89,8 +90,8 @@ namespace Tweaks55.UI {
 		}
 
 		Color wallOutlineColor {
-			get => config.wallOutlineColor;
-			set => config.wallOutlineColor = value;
+			get => config.wallBorderColor;
+			set => config.wallBorderColor = value;
 		}
 
 

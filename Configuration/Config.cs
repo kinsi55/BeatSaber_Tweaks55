@@ -10,8 +10,8 @@ namespace Tweaks55 {
 	internal class Config {
 		public static Config Instance;
 
-		public Color bombColor = Color.black;
-		public Color wallOutlineColor = Color.white;
+		public Color bombColor = BombColor.defaultColor;
+		public Color wallBorderColor = WallOutline.defaultColor;
 		public bool disableDebris = false;
 		public bool disableSliceScore = false;
 		public bool transparentWalls = false;
@@ -59,12 +59,6 @@ namespace Tweaks55 {
 		public virtual void Changed() => ApplyValues();
 
 		public void ApplyValues() {
-			// Initially the default bomb color was 0;0;0;0, ths will correct that fault if it made its way into the config
-			if(bombColor.a == 0f)
-				bombColor.a = 1;
-
-			wallOutlineColor.a = 1;
-
 			if(!Plugin.enabled)
 				return;
 
@@ -86,11 +80,13 @@ namespace Tweaks55 {
 				Plugin.Log.Warn(string.Format("GlobalParticles.SetEnabledState failed: {0}", ex));
 			}
 
-			WallOutline.realBorderColor = wallOutlineColor;
-			WallOutline.realBorderColor.a = Mathf.Max(wallOutlineColor.r, wallOutlineColor.g, wallOutlineColor.b) / 5f;
+			WallOutline.realBorderColor = wallBorderColor;
+			WallOutline.realBorderColor.a = Mathf.Max(wallBorderColor.r, wallBorderColor.g, wallBorderColor.b) / 5f;
 
-			WallOutline.fakeBorderColor = wallOutlineColor;
+			WallOutline.fakeBorderColor = wallBorderColor;
 			WallOutline.fakeBorderColor.a = 0.6f + (WallOutline.realBorderColor.a * 2f);
+
+			WallOutline.enabled = wallBorderColor != WallOutline.defaultColor;
 
 			Rumblez();
 			void Rumblez() {

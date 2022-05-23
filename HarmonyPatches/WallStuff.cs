@@ -90,7 +90,7 @@ namespace Tweaks55.HarmonyPatches {
 
 	[HarmonyPatch]
 	static class WallOutline {
-		static readonly Color defaultColor = Color.white;
+		internal static readonly Color defaultColor = Color.white.ColorWithAlpha(0);
 
 		static byte colorParam = 0;
 
@@ -102,16 +102,17 @@ namespace Tweaks55.HarmonyPatches {
 
 		internal static Color realBorderColor;
 		internal static Color fakeBorderColor;
+		internal static bool enabled;
 
 		static Color GetRealBorderColor(Color originalColor) {
-			if(Config.Instance.wallOutlineColor == defaultColor)
+			if(enabled)
 				return originalColor;
 
 			return realBorderColor;
 		}
 
 		static Color GetFakeBorderColor(Color originalColor) {
-			if(Config.Instance.wallOutlineColor == defaultColor)
+			if(enabled)
 				return originalColor;
 
 			return fakeBorderColor;
