@@ -75,13 +75,21 @@ namespace Tweaks55.HarmonyPatches {
 				return;
 
 			visualWrappersOriginal = ObstacleController_visualWrappers(ref ____obstaclePrefab);
-
+#if !PRE_1_20
 			if(visualWrappersOriginal.Length != 2)
 				return;
 
 			visualWrappersOriginal[0].SetActive(false);
 
 			ObstacleController_visualWrappers(ref ____obstaclePrefab) = new[] { visualWrappersOriginal[1] };
+#else
+			if(visualWrappersOriginal.Length != 3)
+				return;
+
+			visualWrappersOriginal[0].SetActive(false);
+
+			ObstacleController_visualWrappers(ref ____obstaclePrefab) = new[] { visualWrappersOriginal[1], visualWrappersOriginal[2] };
+#endif
 		}
 
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectsInstaller), "InstallBindings");
@@ -106,16 +114,16 @@ namespace Tweaks55.HarmonyPatches {
 
 		static Color GetRealBorderColor(Color originalColor) {
 			if(enabled)
-				return originalColor;
+				return realBorderColor;
 
-			return realBorderColor;
+			return originalColor;
 		}
 
 		static Color GetFakeBorderColor(Color originalColor) {
 			if(enabled)
-				return originalColor;
+				return fakeBorderColor;
 
-			return fakeBorderColor;
+			return originalColor;
 		}
 
 		[HarmonyPriority(int.MaxValue)]
