@@ -75,21 +75,20 @@ namespace Tweaks55.HarmonyPatches {
 				return;
 
 			visualWrappersOriginal = ObstacleController_visualWrappers(ref ____obstaclePrefab);
+
 #if !PRE_1_20
 			if(visualWrappersOriginal.Length != 2)
 				return;
-
-			visualWrappersOriginal[0].SetActive(false);
 
 			ObstacleController_visualWrappers(ref ____obstaclePrefab) = new[] { visualWrappersOriginal[1] };
 #else
 			if(visualWrappersOriginal.Length != 3)
 				return;
 
-			visualWrappersOriginal[0].SetActive(false);
-
 			ObstacleController_visualWrappers(ref ____obstaclePrefab) = new[] { visualWrappersOriginal[1], visualWrappersOriginal[2] };
 #endif
+
+			visualWrappersOriginal[0].SetActive(false);
 		}
 
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapObjectsInstaller), "InstallBindings");
