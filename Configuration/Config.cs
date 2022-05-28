@@ -62,6 +62,10 @@ namespace Tweaks55 {
 			if(!Plugin.enabled)
 				return;
 
+			// Migration from old default (<0.3.7). TODO: Remove later
+			if(bombColor == Color.black)
+				bombColor = BombColor.defaultColor;
+
 			try {
 				MenuLightColor.SetColor(menuLightColor);
 			} catch(Exception ex) {
