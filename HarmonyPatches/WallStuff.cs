@@ -13,7 +13,7 @@ namespace Tweaks55.HarmonyPatches {
 	static class WallClash {
 		[HarmonyPriority(int.MaxValue)]
 		static void Postfix(MonoBehaviour __instance) {
-			if(!Config.Instance.disableSaberClash)
+			if(!Config.Instance.disableWallRumbleAndParticles)
 				return;
 
 			__instance.enabled = false;
