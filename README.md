@@ -15,7 +15,7 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 ### Gameplay
 
 - `Bomb Color`: Changes the color of bombs...
-- `Wall Outline Color`: Changes outline color of walls
+- `Wall Outline Color*`: Changes outline color of walls. *: If you have Bloom off in the game settings, this only properly works if you also have 'Disable Fake Wall Bloom' in the Graphics Tab
 - `Disable Debris`: Disables Debris
 - `Make Walls Transparent`: Makes walls fully transparent forsenCD
 - `Disable Slice Score`: Disables the Score display you get per cut (115 etc)
@@ -42,6 +42,7 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 
 - `Disable 'Fake' Wall Bloom`: Disables the 'Fake' bloom that is applied to walls when you disable Post-Processing bloom in the game settings so you get true 'No Bloom' (Also resolves 'Broken' walls on Noodle maps).
 - `Disable Beat lines`: Disables the extremely bright lines which show up on the floor in columns where notes spawn
+- `Disable Camera Noise / Dither`: Beat Saber applies random noise / dithering to make banding of color gradients less obvious. This can cause some visual Artifacts and decrease streaming / recording quality.
 
 ### UI
 
