@@ -18,8 +18,7 @@ namespace Tweaks55.HarmonyPatches {
 		public static readonly HapticPresetSO weakPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
 
 		[HarmonyPriority(int.MinValue)]
-#if !PRE_1_20
-		static bool Prefix(HapticFeedbackController ____hapticFeedbackController, SaberType saberType, NoteCutHapticEffect.Type type) {
+		static bool Prefix(HapticFeedbackManager ____hapticFeedbackManager, SaberType saberType, NoteCutHapticEffect.Type type) {
 			if(!Config.Instance.enableCustomRumble)
 				return true;
 
@@ -27,35 +26,21 @@ namespace Tweaks55.HarmonyPatches {
 				if(weakPreset._duration == 0f || weakPreset._strength == 0f)
 					return false;
 
-				____hapticFeedbackController.PlayHapticFeedback(saberType.Node(), weakPreset);
+				____hapticFeedbackManager.PlayHapticFeedback(saberType.Node(), weakPreset);
 			} else {
 				if(normalPreset._duration == 0f || normalPreset._strength == 0f)
 					return false;
 
-				____hapticFeedbackController.PlayHapticFeedback(saberType.Node(), normalPreset);
+				____hapticFeedbackManager.PlayHapticFeedback(saberType.Node(), normalPreset);
 			}
 
 			return false;
 		}
-#else
-		static bool Prefix(ref HapticPresetSO ____rumblePreset) {
-			if(!Config.Instance.enableCustomRumble)
-				return true;
-
-			if(normalPreset._duration == 0f || normalPreset._strength == 0f)
-				return false;
-
-			____rumblePreset = normalPreset;
-
-			return true;
-		}
-#endif
 
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(NoteCutHapticEffect), nameof(NoteCutHapticEffect.HitNote));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 
-#if !PRE_1_20
 	[HarmonyPatch]
 	static class ArcRumble {
 		public const float STRENGTH_NORMAL = 0.75f;
@@ -76,5 +61,4 @@ namespace Tweaks55.HarmonyPatches {
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(SliderHapticFeedbackInteractionEffect), nameof(SliderHapticFeedbackInteractionEffect.Vibrate));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
-#endif
 }

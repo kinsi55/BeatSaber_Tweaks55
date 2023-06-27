@@ -2,9 +2,9 @@
 	"id": "Tweaks55",
 	"name": "Tweaks55",
 	"author": "Kinsi55",
-	"version": "0.3.8",
+	"version": "0.3.9",
 	"description": "A collection of various tweaks which by themselves are too simple for their own designated mods",
-	"gameVersion": "1.22.1",
+	"gameVersion": "1.30.2",
 	"dependsOn": {
 		"BSIPA": "^4.0.5"
 	},

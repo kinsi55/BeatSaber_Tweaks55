@@ -76,17 +76,10 @@ namespace Tweaks55.HarmonyPatches {
 
 			visualWrappersOriginal = ObstacleController_visualWrappers(ref ____obstaclePrefab);
 
-#if !PRE_1_20
 			if(visualWrappersOriginal.Length != 2)
 				return;
 
 			ObstacleController_visualWrappers(ref ____obstaclePrefab) = new[] { visualWrappersOriginal[1] };
-#else
-			if(visualWrappersOriginal.Length != 3)
-				return;
-
-			ObstacleController_visualWrappers(ref ____obstaclePrefab) = new[] { visualWrappersOriginal[1], visualWrappersOriginal[2] };
-#endif
 
 			visualWrappersOriginal[0].SetActive(false);
 		}

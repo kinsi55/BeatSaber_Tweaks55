@@ -4,7 +4,6 @@ using System.Reflection;
 using Tweaks55.Util;
 
 namespace Tweaks55.HarmonyPatches {
-#if !PRE_1_20
 	[HarmonyPatch]
 	static class PatchHealthWarning {
 		[HarmonyPriority(int.MinValue)]
@@ -16,5 +15,4 @@ namespace Tweaks55.HarmonyPatches {
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(DefaultScenesTransitionsFromInit), nameof(DefaultScenesTransitionsFromInit.TransitionToNextScene));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
-#endif
 }
