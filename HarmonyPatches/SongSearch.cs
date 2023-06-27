@@ -14,7 +14,7 @@ namespace Tweaks55.HarmonyPatches {
 				searchTexts = new string[] { string.Join(" ", searchTexts) };
 		}
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapLevelFilterModel), "LevelContainsText", BindingFlags.NonPublic | BindingFlags.Static);
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(BeatmapLevelFilterModel), nameof(BeatmapLevelFilterModel.LevelContainsText));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }

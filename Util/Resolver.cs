@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using HarmonyLib;
 
 namespace Tweaks55.Util {
 	public static class Resolver {
@@ -18,13 +19,13 @@ namespace Tweaks55.Util {
 			return null;
 		}
 
-		public static MethodBase GetMethod(string className, string methodName, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance, string assemblyName = "Main") {
+		public static MethodBase GetMethod(string className, string methodName, string assemblyName = "Main") {
 			if(!assemblies.TryGetValue(assemblyName, out Assembly assembly))
 				return null;
 
 			var t = assembly.GetType(className);
 
-			return t?.GetMethod(methodName, bindingFlags);
+			return AccessTools.Method(t, methodName);
 		}
 	}
 }
