@@ -15,6 +15,7 @@ namespace Tweaks55 {
 		public bool disableDebris = false;
 		public bool disableSliceScore = false;
 		public bool transparentWalls = false;
+		public float bombScale = 1.0f;
 
 		public bool disableComboBreakEffect = false;
 		public bool disableWallRumbleAndParticles = false;

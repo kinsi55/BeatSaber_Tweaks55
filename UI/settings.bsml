@@ -25,6 +25,9 @@
 					<button text="Reset" on-click="ClearWallOutlineColor"/>
 				</horizontal>
 				<macro.as-host host='config'>
+					<slider-setting apply-on-change="true" value="bombScale" text="Bomb Scale" min='0.5' max='1' increment='0.05'
+							hover-hint="Allows you to increase the maximum speed that you can scroll lists at with your joystick"
+					/>
 					<checkbox-setting apply-on-change="true" value="disableDebris" text="Disable Debris"
 						hover-hint="Disables Debris"
 					/>
