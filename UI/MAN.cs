@@ -16,7 +16,7 @@ namespace Tweaks55.UI {
 	class TweaksFlowCoordinator : FlowCoordinator {
 		MAN view = null;
 
-		protected override void DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
+		public override void DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
 			if(firstActivation) {
 				SetTitle("Tweaks55");
 				showBackButton = true;
@@ -28,7 +28,7 @@ namespace Tweaks55.UI {
 			}
 		}
 
-		protected override void BackButtonWasPressed(ViewController topViewController) {
+		public override void BackButtonWasPressed(ViewController topViewController) {
 			BeatSaberUI.MainFlowCoordinator.DismissFlowCoordinator(this, null, ViewController.AnimationDirection.Horizontal);
 			Config.Instance.Changed();
 		}
