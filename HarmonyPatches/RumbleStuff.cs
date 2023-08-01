@@ -19,7 +19,7 @@ namespace Tweaks55.HarmonyPatches {
 
 		[HarmonyPriority(int.MinValue)]
 #if !PRE_1_20
-		static bool Prefix(HapticFeedbackManager ____hapticFeedbackController, SaberType saberType, NoteCutHapticEffect.Type type) {
+		static bool Prefix(HapticFeedbackController ____hapticFeedbackController, SaberType saberType, NoteCutHapticEffect.Type type) {
 			if(!Config.Instance.enableCustomRumble)
 				return true;
 

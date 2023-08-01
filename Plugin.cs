@@ -30,8 +30,6 @@ namespace Tweaks55 {
 			Instance = this;
 			Log = logger;
 
-			SharedCoroutineStarter.Init();
-
 			Config.Instance = conf.Generated<Config>();
 
 			harmony = new Harmony("Kinsi55.BeatSaber.Tweaks55");
