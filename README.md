@@ -34,7 +34,6 @@ Click on [releases](https://github.com/kinsi55/BeatSaber_Tweaks55/releases/lates
 ### Quality of Life
 
 - `Skip Health warning`: Disables the health warning you get on every game start
-- `Make Basegame Song-Search Fulltext`: Changes the Basegame song search to be fulltext, so when searching for 'the top' it will not find all songs which contain 'the' and 'top' but instead only songs that contain 'the top'
 - `Dont Reset Basegame settings on Cancel`: Some of the settings (Like Controller and Roomadjust) can be changed without actually applying them (Clicking OK). Enabling this allows you to simply click Cancel after changing them so you dont need to wait for the game to reload
 - `Joystick Scroll speed multiplier`: Allows you to increase the maximum speed that you can scroll lists at with your joystick
 
