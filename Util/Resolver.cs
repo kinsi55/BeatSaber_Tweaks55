@@ -19,13 +19,13 @@ namespace Tweaks55.Util {
 			return null;
 		}
 
-		public static MethodBase GetMethod(string className, string methodName, string assemblyName = "Main") {
+		public static MethodBase GetMethod(string className, string methodName, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, string assemblyName = "Main") {
 			if(!assemblies.TryGetValue(assemblyName, out Assembly assembly))
 				return null;
 
 			var t = assembly.GetType(className);
 
-			return AccessTools.Method(t, methodName);
+			return t.GetMethod(methodName, bindingFlags);
 		}
 	}
 }

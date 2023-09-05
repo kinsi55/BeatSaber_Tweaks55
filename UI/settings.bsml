@@ -74,9 +74,6 @@
 					<checkbox-setting apply-on-change="true" value="disableHealthWarning" text="Skip Health warning"
 						hover-hint="Disables the health warning you get on every game start"
 					/>
-					<checkbox-setting apply-on-change="true" value="basegameFulltextSearch" text="Make Basegame Song-Search Fulltext"
-						hover-hint="Changes the Basegame song search to be fulltext, so when searching for 'the top' it will not find all songs which contain 'the' and 'top' but instead only songs that contain 'the top'"
-					/>
 					<checkbox-setting apply-on-change="true" value="keepGameSettingsOnCancel" text="Dont Reset Basegame settings on Cancel"
 						hover-hint="Some of the settings (Like Controller and Roomadjust) can be changed without actually applying them (Clicking OK). Enabling this allows you to simply click Cancel after changing them so you dont need to wait for the game to reload"
 					/>

@@ -29,7 +29,6 @@ namespace Tweaks55 {
 
 
 		public bool disableHealthWarning = false;
-		public bool basegameFulltextSearch = false;
 		public bool keepGameSettingsOnCancel = false;
 		public float scrollSpeedMultiplier = 1f;
 
