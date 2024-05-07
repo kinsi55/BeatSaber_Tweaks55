@@ -22,7 +22,7 @@ namespace Tweaks55.HarmonyPatches {
 			if(!Config.Instance.enableCustomRumble)
 				return true;
 
-			if(type == NoteCutHapticEffect.Type.ShortWeak) {
+			if(type == NoteCutHapticEffect.Type.ChainLink) {
 				if(weakPreset._duration == 0f || weakPreset._strength == 0f)
 					return false;
 
