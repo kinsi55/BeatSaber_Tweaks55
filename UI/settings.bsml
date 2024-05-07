@@ -74,9 +74,6 @@
 					<checkbox-setting apply-on-change="true" value="disableHealthWarning" text="Skip Health warning"
 						hover-hint="Disables the health warning you get on every game start"
 					/>
-					<checkbox-setting apply-on-change="true" value="keepGameSettingsOnCancel" text="Dont Reset Basegame settings on Cancel"
-						hover-hint="Some of the settings (Like Controller and Roomadjust) can be changed without actually applying them (Clicking OK). Enabling this allows you to simply click Cancel after changing them so you dont need to wait for the game to reload"
-					/>
 					<slider-setting apply-on-change="true" value="scrollSpeedMultiplier" text="Joystick Scroll speed multiplier" min='0' max='5' increment='0.1'
 						hover-hint="Allows you to increase the maximum speed that you can scroll lists at with your joystick"
 					/>
