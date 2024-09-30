@@ -1,8 +1,8 @@
 ﻿using HarmonyLib;
 using System;
+using System.Linq;
 using System.Reflection;
 using TMPro;
-using Tweaks55.Util;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
@@ -16,7 +16,10 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(ScoreUIController), nameof(ScoreUIController.UpdateScore));
+		static MethodBase TargetMethod() => 
+			AccessTools.GetDeclaredMethods(typeof(ScoreUIController))
+			.Where(m => m.Name == nameof(ScoreUIController.UpdateScore))
+			.Last();
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
