@@ -12,7 +12,7 @@ namespace Tweaks55.HarmonyPatches {
 				goStraightToMenu = true;
 		}
 
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(DefaultScenesTransitionsFromInit), nameof(DefaultScenesTransitionsFromInit.TransitionToNextScene));
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(DefaultScenesTransitionsFromInit), nameof(DefaultScenesTransitionsFromInit.TransitionToNextScene), assemblyName: "GameInit");
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
