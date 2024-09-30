@@ -3,37 +3,36 @@ using System;
 using System.Reflection;
 using Tweaks55.Util;
 using UnityEngine;
+using System.Linq;
 
 namespace Tweaks55.HarmonyPatches {
 	[HarmonyPatch]
 	static class MenuLightColor {
 		static MenuLightsManager instance;
-		static MenuLightsPresetSO _defaultPreset;
 
-		static Color defaultColor;
+		static LightIdColorPair colorPair;
+		static ColorSO defaultColor;
 
-		static void Prefix(MenuLightsManager __instance, MenuLightsPresetSO ____defaultPreset) {
+		static void Prefix(MenuLightsManager __instance) {
 			instance = __instance;
-			_defaultPreset = ____defaultPreset;
 
-			defaultColor = _defaultPreset.playersPlaceNeonsColor;
+			colorPair = __instance._defaultPreset.lightIdColorPairs.FirstOrDefault(x => x.lightId == 1);
+			defaultColor = colorPair?.baseColor;
 
 			SetColor(Config.Instance.menuLightColor, false);
 		}
 
 		public static void SetColor(Color color, bool doApply = true) {
-			if(instance == null || _defaultPreset == null || !(_defaultPreset.playersPlaceNeonsColor is SimpleColorSO mmmmm))
+			if(instance == null || colorPair == null || !(defaultColor is SimpleColorSO mmmmm))
 				return;
 
 			if(Config.Instance.menuLightColor.a == 0)
-				color = defaultColor;
+				colorPair.baseColor = defaultColor;
 
 			mmmmm.SetColor(color);
 
-			if(doApply) {
-				instance.RefreshLightsDictForPreset(_defaultPreset);
-				instance.SetColorsFromPreset(_defaultPreset, 1f);
-			}
+			if(doApply)
+				instance.RefreshColors();
 		}
 
 		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(MenuLightsManager), nameof(MenuLightsManager.Start));
