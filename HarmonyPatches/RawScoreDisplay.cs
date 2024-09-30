@@ -16,10 +16,8 @@ namespace Tweaks55.HarmonyPatches {
 			return false;
 		}
 
-		static MethodBase TargetMethod() => 
-			AccessTools.GetDeclaredMethods(typeof(ScoreUIController))
-			.Where(m => m.Name == nameof(ScoreUIController.UpdateScore))
-			.Last();
+		static MethodBase TargetMethod() => AccessTools.Method(typeof(ScoreUIController), nameof(ScoreUIController.UpdateScore), new[] { typeof(int) });
+
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
