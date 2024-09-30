@@ -10,26 +10,24 @@ namespace Tweaks55.HarmonyPatches {
 	static class MenuLightColor {
 		static MenuLightsManager instance;
 
-		static LightIdColorPair colorPair;
-		static ColorSO defaultColor;
+		static Color defaultColor;
+		static ColorSO colorTarget;
 
 		static void Prefix(MenuLightsManager __instance) {
 			instance = __instance;
 
-			colorPair = __instance._defaultPreset.lightIdColorPairs.FirstOrDefault(x => x.lightId == 1);
-			defaultColor = colorPair?.baseColor;
+			var colorPair = __instance._defaultPreset.lightIdColorPairs.FirstOrDefault(x => x.lightId == 1);
+			colorTarget = colorPair?.baseColor;
+			defaultColor = colorTarget?.color ?? Color.black;
 
 			SetColor(Config.Instance.menuLightColor, false);
 		}
 
 		public static void SetColor(Color color, bool doApply = true) {
-			if(instance == null || colorPair == null || !(defaultColor is SimpleColorSO mmmmm))
+			if(instance == null || color == null || !(colorTarget is SimpleColorSO mmmmm))
 				return;
 
-			if(Config.Instance.menuLightColor.a == 0)
-				colorPair.baseColor = defaultColor;
-
-			mmmmm.SetColor(color);
+			mmmmm.SetColor(color.a == 0 ? defaultColor : color);
 
 			if(doApply)
 				instance.RefreshColors();
