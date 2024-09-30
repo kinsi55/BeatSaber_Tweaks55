@@ -1,6 +1,7 @@
 ﻿using BeatSaberMarkupLanguage;
 using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.MenuButtons;
+using BeatSaberMarkupLanguage.Util;
 using BeatSaberMarkupLanguage.ViewControllers;
 using HMUI;
 using System;
@@ -16,7 +17,7 @@ namespace Tweaks55.UI {
 	class TweaksFlowCoordinator : FlowCoordinator {
 		MAN view = null;
 
-		public override void DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
+		protected override void DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
 			if(firstActivation) {
 				SetTitle("Tweaks55");
 				showBackButton = true;
@@ -28,7 +29,7 @@ namespace Tweaks55.UI {
 			}
 		}
 
-		public override void BackButtonWasPressed(ViewController topViewController) {
+		protected override void BackButtonWasPressed(ViewController topViewController) {
 			BeatSaberUI.MainFlowCoordinator.DismissFlowCoordinator(this, null, ViewController.AnimationDirection.Horizontal);
 			Config.Instance.Changed();
 		}
@@ -44,18 +45,24 @@ namespace Tweaks55.UI {
 		static MenuButton theButton;
 
 		public static void Initialize() {
+			MainMenuAwaiter.MainMenuInitializing += InitializeOnMainMenuLoad;
+		}
 
-			MenuButtons.instance.RegisterButton(theButton ??= new MenuButton("Tweaks55", "A bunch of settings that really should just exist in basegame!", () => {
+		public static void Deinit() {
+			MainMenuAwaiter.MainMenuInitializing -= InitializeOnMainMenuLoad;
+
+			if(theButton != null)
+				MenuButtons.Instance.UnregisterButton(theButton);
+		}
+
+		private static void InitializeOnMainMenuLoad() {
+
+			MenuButtons.Instance.RegisterButton(theButton ??= new MenuButton("Tweaks55", "A bunch of settings that really should just exist in basegame!", () => {
 				if(flow == null)
 					flow = BeatSaberUI.CreateFlowCoordinator<TweaksFlowCoordinator>();
 
 				flow.ShowFlow();
 			}, true));
-		}
-
-		public static void Deinit() {
-			if(theButton != null)
-				MenuButtons.instance.UnregisterButton(theButton);
 		}
 	}
 
