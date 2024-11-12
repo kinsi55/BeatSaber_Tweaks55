@@ -31,6 +31,8 @@ namespace Tweaks55 {
 			Log = logger;
 
 			SharedCoroutineStarter.Init();
+			CutRumble.Init();
+			ArcRumble.Init();
 
 			Config.Instance = conf.Generated<Config>();
 

@@ -14,8 +14,13 @@ namespace Tweaks55.HarmonyPatches {
 		public const float STRENGTH_WEAK = 0.75f;
 		public const float DURATION_WEAK = 0.07f;
 
-		public static readonly HapticPresetSO normalPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
-		public static readonly HapticPresetSO weakPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
+		public static HapticPresetSO normalPreset;
+		public static HapticPresetSO weakPreset;
+
+		public static void Init() {
+			normalPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
+			weakPreset = ScriptableObject.CreateInstance<HapticPresetSO>();
+		}
 
 		[HarmonyPriority(int.MinValue)]
 		static bool Prefix(HapticFeedbackManager ____hapticFeedbackManager, SaberType saberType, NoteCutHapticEffect.Type type) {
@@ -46,9 +51,10 @@ namespace Tweaks55.HarmonyPatches {
 		public const float STRENGTH_NORMAL = 0.75f;
 		public const float DURATION_NORMAL = 0.01f;
 
-		public static readonly HapticPresetSO preset = ScriptableObject.CreateInstance<HapticPresetSO>();
+		public static HapticPresetSO preset;
 
-		static void Prepare() {
+		public static void Init() {
+			preset = ScriptableObject.CreateInstance<HapticPresetSO>();
 			preset._continuous = true;
 		}
 
