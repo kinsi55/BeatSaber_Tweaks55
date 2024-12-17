@@ -140,7 +140,7 @@ namespace Tweaks55.HarmonyPatches {
 
 			return c.InstructionEnumeration();
 		}
-		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(StretchableObstacle), nameof(StretchableObstacle.SetSizeAndColor));
+		static MethodBase TargetMethod() => Resolver.GetMethod(nameof(StretchableObstacle), nameof(StretchableObstacle.SetAllProperties));
 		static Exception Cleanup(Exception ex) => Plugin.PatchFailed(ex);
 	}
 }
