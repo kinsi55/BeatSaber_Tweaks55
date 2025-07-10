@@ -16,7 +16,7 @@ namespace Tweaks55.HarmonyPatches {
 		public static void SetEnabledState(bool enabled) {
 			if(!lastKnownState || !enabled) {
 				foreach(var x in Resources.FindObjectsOfTypeAll<ParticleSystem>())
-					if(x.name == "DustPS") x.gameObject.SetActive(enabled);
+					if(x.name == "DustPS" || x.name == "DustBritney") x.gameObject.SetActive(enabled);
 			}
 
 			lastKnownState = enabled;
